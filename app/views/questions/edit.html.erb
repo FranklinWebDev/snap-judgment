@@ -3,7 +3,7 @@
 
 <%= form_with model: @question do |form| %>
 <ul>
-	<li><% if @question.question_image.attached? %><img src="<%= (url_for(@question.question_image)) %>" alt=""><% end %>
+	<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %>
 		<%= form.label "Question Photo" %>
 		<%= form.file_field :question_image %>
 	</li>
@@ -41,7 +41,7 @@
 	</li>
 	<li>
 		<%= link_to 'cancel', questions_path %>
-		<%= form.submit "Add User(s)" %>
+		<%= form.submit "Update Question" %>
 	</li>
 </ul>
 <% end %>

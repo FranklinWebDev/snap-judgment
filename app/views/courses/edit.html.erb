@@ -3,6 +3,6 @@
 <%= form_for @course do |f|%>
 	<%= f.label :name %>
 	<%= f.text_field :name %>
-	<%= f.submit %>
+	<%= f.submit "Edit Course" %>
 	<%= link_to 'cancel', courses_path %>
 <% end %>

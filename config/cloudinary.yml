@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dlai7qol1
+  api_key: '266226838333217'
+  api_secret: WOIjVyYNwMsIeGOleZh48YDVeg0
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dlai7qol1
+  api_key: '266226838333217'
+  api_secret: WOIjVyYNwMsIeGOleZh48YDVeg0
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dlai7qol1
+  api_key: '266226838333217'
+  api_secret: WOIjVyYNwMsIeGOleZh48YDVeg0
+  enhance_image_tag: true
+  static_file_support: false
