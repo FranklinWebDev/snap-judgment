@@ -1,0 +1,10 @@
+<h2>Show User</h2>
+<%= link_to 'back to list', users_path(course_id: @user.course_id) %>
+
+<ul>
+	<li>Email: <%= @user.email %></li>
+	<li>Password: <%= @user.password %></li>
+	<li>Class: <%= Course.find(@user.course_id).name %></li>
+	<li>Admin? <%= @user.admin ? 'Yes' : 'No' %></li>
+	<li><%= button_to 'delete', @user, method: 'delete' %> <%= link_to 'edit', edit_user_path(@user.id) %></li>
+</ul>

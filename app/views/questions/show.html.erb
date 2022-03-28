@@ -1,0 +1,14 @@
+<h2>Show Question</h2>
+
+<ul>
+	<li>Question: <%= @question.situation %></li>
+	<li>Description: <%= @question.description %></li>
+    <li>Hint: <%= @question.hint %></li>
+	<li>Image URL: <%= @question.image_url %></li>
+	<li>Option #1: <%= @question.option1 %></li>
+	<li>Option #2: <%= @question.option2 %></li>
+	<li>Option #3: <%= @question.option3 %></li>
+	<li>Option #4: <%= @question.option4 %></li>
+	<li>Answer: <%= @question.answer %></li>
+	<li><%= button_to 'delete', @question, method: 'delete' %> <%= link_to 'edit', edit_question_path(@question.id) %></li>
+</ul>

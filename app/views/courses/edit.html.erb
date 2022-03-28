@@ -1,0 +1,8 @@
+<h2>Edit Course</h2>
+
+<%= form_for @course do |f|%>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.submit %>
+	<%= link_to 'cancel', courses_path %>
+<% end %>

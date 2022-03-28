@@ -1,0 +1,14 @@
+<h2>Courses index</h2>
+<%= link_to 'add new course', new_course_path %>
+
+<% flash.each do |type, msg| %>
+	<div class="alert alert-info">
+		<%= msg %>
+	</div>
+<% end %>
+
+<ul>
+	<% @courses.each do |c| %>
+		<li><%= c.name %> <%= button_to 'delete', course_path(c.id), method: 'delete' %> <%= link_to 'edit', edit_course_path(c.id) %></li>
+	<% end %>
+</ul>

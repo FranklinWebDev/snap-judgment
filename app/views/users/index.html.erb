@@ -1,0 +1,19 @@
+<h2>Users index</h2>
+<%= link_to 'add new users', new_user_path %>
+
+<form action="" method="get" onchange="this.submit()">
+	<select name="course_id">
+		<% @courses.each do |c| %>
+			<% if params[:course_id].to_i == c.id.to_i %>
+				<% is_selected = ' selected' %>
+			<% end %>
+			<option value="<%= c.id %>"<%= is_selected %>><%= c.name %></option>
+		<% end %>
+	</select>
+</form>
+
+<ul>
+	<% @users.each do |u| %>
+		<li><%= link_to u.email, user_path(u.id) %> <%= button_to 'delete', user_path(u.id), method: 'delete' %> <%= link_to 'edit', edit_user_path(u.id) %></li>
+	<% end %>
+</ul>
