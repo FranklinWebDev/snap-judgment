@@ -52,7 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_155055) do
     t.string "situation"
     t.string "description"
     t.string "hint"
-    t.string "image_url"
     t.string "option1"
     t.string "option2"
     t.string "option3"

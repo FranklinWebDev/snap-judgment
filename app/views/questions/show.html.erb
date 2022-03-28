@@ -1,9 +1,10 @@
 <h2>Show Question</h2>
 
 <ul>
+	<li><% if @question.question_image.attached? %><img src="<%= (url_for(@question.question_image)) %>" alt=""><% end %></li>
 	<li>Question: <%= @question.situation %></li>
 	<li>Description: <%= @question.description %></li>
-    <li>Hint: <%= @question.hint %></li>
+   <li>Hint: <%= @question.hint %></li>
 	<li>Image URL: <%= @question.image_url %></li>
 	<li>Option #1: <%= @question.option1 %></li>
 	<li>Option #2: <%= @question.option2 %></li>

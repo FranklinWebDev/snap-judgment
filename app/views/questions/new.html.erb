@@ -1,29 +1,25 @@
 <h2>New Questions</h2>
 
-<form action="<%= questions_path %>" enctype="multipart/form-data" method="post">
-	<label for="questionsCSV">Upload CSV file:</label>
-	<input type="file" name="questionsCSV" id="questionsCSV">
-
-	<p>OR...</p>
-
-	<label for="situation">Question:</label>
-	<input type="text" name="situation" id="situation">
-	<label for="description">Description:</label>
-	<textarea name="description" id="description"></textarea>
-	<label for="hint">Hint:</label>
-	<input type="text" name="hint" id="hint">
-	<label for="image_url">Image URL:</label>
-	<input type="text" name="image_url" id="image_url">
-	<label for="option1">Option #1:</label>
-	<input type="text" name="option1" id="option1">
-	<label for="option2">Option #2:</label>
-	<input type="text" name="option2" id="option2">
-	<label for="option3">Option #3:</label>
-	<input type="text" name="option3" id="option3">
-	<label for="option4">Option #4:</label>
-	<input type="text" name="option4" id="option4">
-	<label for="answer">Answer:</label>
-	<input type="text" name="answer" id="answer">
-	<input type="submit" value="Add User(s)">
+<%= form_with model: @question do |form| %>
+	<%= form.label "Question Photo" %>
+	<%= form.file_field :question_image %>
+	<%= form.label "Question:" %>
+	<%= form.text_field :situation %>
+	<%= form.label "Description:" %>
+	<%= form.text_area :description %>
+	<%= form.label "Hint:" %>
+	<%= form.text_field :hint %>
+	<%= form.label "Option #1:" %>
+	<%= form.text_field :option1 %>
+	<%= form.label "Option #2:" %>
+	<%= form.text_field :option2 %>
+	<%= form.label "Option #3:" %>
+	<%= form.text_field :option3 %>
+	<%= form.label "Option #4:" %>
+	<%= form.text_field :option4 %>
+	<%= form.label "Answer:" %>
+	<%= form.text_field :answer %>
 	<%= link_to 'cancel', questions_path %>
-</form>
+	<%= form.submit "Add User(s)" %>
+<% end %>
+ 
