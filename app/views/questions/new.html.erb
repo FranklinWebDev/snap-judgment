@@ -1,25 +1,38 @@
-<h2>New Questions</h2>
+<h2>New Question</h2>
+<%= link_to '[ <- back to list ]', questions_path, class: "back-link" %>
 
 <%= form_with model: @question do |form| %>
-	<%= form.label "Question Photo" %>
-	<%= form.file_field :question_image %>
-	<%= form.label "Question:" %>
-	<%= form.text_field :situation %>
-	<%= form.label "Description:" %>
-	<%= form.text_area :description %>
-	<%= form.label "Hint:" %>
-	<%= form.text_field :hint %>
-	<%= form.label "Option #1:" %>
-	<%= form.text_field :option1 %>
-	<%= form.label "Option #2:" %>
-	<%= form.text_field :option2 %>
-	<%= form.label "Option #3:" %>
-	<%= form.text_field :option3 %>
-	<%= form.label "Option #4:" %>
-	<%= form.text_field :option4 %>
-	<%= form.label "Answer:" %>
-	<%= form.text_field :answer %>
-	<%= link_to 'cancel', questions_path %>
-	<%= form.submit "Add Question" %>
+<ul class="item-list">
+	<li><%= form.label "Question Photo" %>
+		<%= form.file_field :question_image %>
+	</li>
+	<li><%= form.label "Question:" %>
+		<%= form.text_field :situation %>
+	</li>
+	<li><%= form.label "Description:" %>
+		<%= form.text_area :description %>
+	</li>
+	<li><%= form.label "Hint:" %>
+		<%= form.text_field :hint %>
+	</li>
+	<li><%= form.label "Option #1:" %>
+		<%= form.text_field :option1 %>
+	</li>
+	<li><%= form.label "Option #2:" %>
+		<%= form.text_field :option2 %>
+	</li>
+	<li><%= form.label "Option #3:" %>
+		<%= form.text_field :option3 %>
+	</li>
+	<li><%= form.label "Option #4:" %>
+		<%= form.text_field :option4 %>
+	</li>
+	<li><%= form.label "Answer:" %>
+		<%= form.text_field :answer %>
+	</li>
+	<li><%= form.submit "Add Question" %>
+		<%= link_to '[ cancel ]', questions_path, class: "edit-link" %>
+	</li>
+</ul>
 <% end %>
  

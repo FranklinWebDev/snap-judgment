@@ -1,8 +1,8 @@
 <h2>Edit User</h2>
-<%= link_to 'back to list', users_path(course_id: @user.course_id) %>
+<%= link_to '[ <- back to list ]', users_path(course_id: @user.course_id), class: "back-link" %>
 
 <%= form_for @user do |f|%>
-<ul>
+<ul class="item-list">
 	<li>
 		<label for="email">Email:</label>
 		<input type="text" name="email" id="email" value="<%= @user.email %>">
@@ -29,6 +29,6 @@
 			<option value="1" <%= "selected" if @user.admin == true %>>Yes</option>
 		</select>
 	</li>
-	<li><input type="submit" value="Update User"> <%= link_to "cancel", :back %></li>
+	<li><input type="submit" value="Update User"> <%= link_to "[ cancel ]", :back, class: "edit-link" %></li>
 </ul>
 <% end %>

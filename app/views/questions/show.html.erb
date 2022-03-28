@@ -1,14 +1,15 @@
 <h2>Show Question</h2>
+<%= link_to '[ <- back to list ]', questions_path, class: "back-link" %>
 
-<ul>
+<ul class="item-list show">
 	<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %></li>
-	<li>Question: <%= @question.situation %></li>
-	<li>Description: <%= @question.description %></li>
-   <li>Hint: <%= @question.hint %></li>
-	<li>Option #1: <%= @question.option1 %></li>
-	<li>Option #2: <%= @question.option2 %></li>
-	<li>Option #3: <%= @question.option3 %></li>
-	<li>Option #4: <%= @question.option4 %></li>
-	<li>Answer: <%= @question.answer %></li>
-	<li><%= button_to 'delete', @question, method: 'delete' %> <%= link_to 'edit', edit_question_path(@question.id) %></li>
+	<li><h4>Question:</h4> <%= @question.situation %></li>
+	<li><h4>Description:</h4> <%= @question.description %></li>
+   <li><h4>Hint:</h4> <%= @question.hint %></li>
+	<li><h4>Option #1:</h4> <%= @question.option1 %></li>
+	<li><h4>Option #2:</h4> <%= @question.option2 %></li>
+	<li><h4>Option #3:</h4> <%= @question.option3 %></li>
+	<li><h4>Option #4:</h4> <%= @question.option4 %></li>
+	<li><h4>Answer:</h4> <%= @question.answer %></li>
+	<li><%= button_to '[ delete ]', @question, method: 'delete' %> <%= link_to '[ edit ]', edit_question_path(@question.id), class: "edit-link" %></li>
 </ul>

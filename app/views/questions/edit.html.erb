@@ -1,8 +1,8 @@
 <h2>Edit Question</h2>
-<%= link_to 'back to list', questions_path %>
+<%= link_to '[ <- back to list ]', questions_path, class: "back-link" %>
 
 <%= form_with model: @question do |form| %>
-<ul>
+<ul class="item-list">
 	<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %>
 		<%= form.label "Question Photo" %>
 		<%= form.file_field :question_image %>
@@ -40,8 +40,8 @@
 		<%= form.text_field :answer %>
 	</li>
 	<li>
-		<%= link_to 'cancel', questions_path %>
 		<%= form.submit "Update Question" %>
+		<%= link_to '[ cancel ]', questions_path, class: "edit-link" %>
 	</li>
 </ul>
 <% end %>

@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <h1>Snap!</h1>
     <nav>
       <ul>
-        <li><%= link_to 'Users', users_path %></li>
-        <li><%= link_to 'Courses', courses_path %></li>
-        <li><%= link_to 'Questions', questions_path %></li>
+        <li><%= link_to '[ Users ]', users_path %></li>
+        <li><%= link_to '[ Courses ]', courses_path %></li>
+        <li><%= link_to '[ Questions ]', questions_path %></li>
       </ul>
     </nav>
     <%= yield %>

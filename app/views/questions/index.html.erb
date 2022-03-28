@@ -1,5 +1,5 @@
 <h2>Questions index</h2>
-<%= link_to 'add new question', new_question_path %>
+<%= link_to '[ + add new question ]', new_question_path, class: "add-link" %>
 
 <% flash.each do |type, msg| %>
 	<div class="alert alert-info">
@@ -7,8 +7,8 @@
 	</div>
 <% end %>
 
-<ul>
+<ul class="item-list">
 	<% @questions.each do |q| %>
-		<li><%= link_to q.situation, question_path(q.id) %> <%= button_to 'delete', question_path(q.id), method: 'delete' %> <%= link_to 'edit', edit_question_path(q.id) %></li>
+		<li><%= link_to '[ edit ]', edit_question_path(q.id), class: "edit-link" %> <%= button_to '[ delete ]', question_path(q.id), method: 'delete' %> <%= link_to q.situation, question_path(q.id), class: "item-link" %></li>
 	<% end %>
 </ul>

@@ -1,8 +1,13 @@
 <h2>Edit Course</h2>
+<%= link_to '[ <- back to list ]', courses_path, class: "back-link" %>
 
 <%= form_for @course do |f|%>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<%= f.submit "Edit Course" %>
-	<%= link_to 'cancel', courses_path %>
+<ul class="item-list">
+	<li><%= f.label :name %>
+		<%= f.text_field :name %>
+	</li>
+	<li><%= f.submit "Edit Course" %>
+		<%= link_to '[ cancel ]', courses_path, class: "edit-link" %>
+	</li>
+</ul>
 <% end %>

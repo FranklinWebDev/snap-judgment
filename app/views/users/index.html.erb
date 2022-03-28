@@ -1,7 +1,7 @@
 <h2>Users index</h2>
-<%= link_to 'add new users', new_user_path %>
+<%= link_to '[ + add new users ]', new_user_path, class: "add-link" %>
 
-<form action="" method="get" onchange="this.submit()">
+<form action="" method="get" onchange="this.submit()" class="course-switch">
 	<select name="course_id">
 		<% @courses.each do |c| %>
 			<% if params[:course_id].to_i == c.id.to_i %>
@@ -12,8 +12,8 @@
 	</select>
 </form>
 
-<ul>
+<ul class="item-list">
 	<% @users.each do |u| %>
-		<li><%= link_to u.email, user_path(u.id) %> <%= button_to 'delete', user_path(u.id), method: 'delete' %> <%= link_to 'edit', edit_user_path(u.id) %></li>
+		<li><%= link_to '[ edit ]', edit_user_path(u.id), class: "edit-link" %> <%= button_to '[ delete ]', user_path(u.id), method: 'delete' %> <%= link_to u.email, user_path(u.id), class: "item-link" %></li>
 	<% end %>
 </ul>
