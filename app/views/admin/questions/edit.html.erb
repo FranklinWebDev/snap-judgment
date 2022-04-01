@@ -1,5 +1,5 @@
 <h2>Edit Question</h2>
-<%= link_to '[ <- back to list ]', questions_path, class: 'back-link' %>
+<%= link_to '[ <- back to list ]', admin_questions_path, class: 'back-link' %>
 
 <%= form_with model: @question do |form| %>
 <ul class='item-list'>
@@ -41,7 +41,7 @@
 	</li>
 	<li>
 		<%= form.submit 'Update Question' %>
-		<%= link_to '[ cancel ]', questions_path, class: 'edit-link' %>
+		<%= link_to '[ cancel ]', admin_questions_path, class: 'edit-link' %>
 	</li>
 </ul>
 <% end %>

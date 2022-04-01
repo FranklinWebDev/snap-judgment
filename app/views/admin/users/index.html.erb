@@ -1,5 +1,5 @@
 <h2>Users index</h2>
-<%= link_to '[ + add new users ]', new_user_path, class: "add-link" %>
+<%= link_to '[ + add new users ]', new_admin_user_path, class: "add-link" %>
 
 <form action="" method="get" onchange="this.submit()" class="course-switch">
 	<select name="course_id">
@@ -14,6 +14,6 @@
 
 <ul class="item-list">
 	<% @users.each do |u| %>
-		<li><%= link_to '[ edit ]', edit_user_path(u.id), class: "edit-link" %> <%= button_to '[ delete ]', user_path(u.id), method: 'delete' %> <%= link_to u.email, user_path(u.id), class: "item-link" %></li>
+		<li><%= link_to '[ edit ]', edit_admin_user_path(u.id), class: "edit-link" %> <%= button_to '[ delete ]', admin_user_path(u.id), method: 'delete' %> <%= link_to u.email, admin_user_path(u.id), class: "item-link" %></li>
 	<% end %>
 </ul>

@@ -1,5 +1,5 @@
 <h2>New Course</h2>
-<%= link_to '[ <- back to list ]', courses_path, class: "back-link" %>
+<%= link_to '[ <- back to list ]', admin_courses_path, class: "back-link" %>
 
 <%= form_for @course do |f| %>
 <ul class="item-list">
@@ -7,7 +7,7 @@
 		<%= f.text_field :name %>
 	</li>
 	<li><%= f.submit "Add Course" %>
-		<%= link_to '[ cancel ]', courses_path, class: "edit-link" %>
+		<%= link_to '[ cancel ]', admin_courses_path, class: "edit-link" %>
 	</li>
 </ul>
 <% end %>

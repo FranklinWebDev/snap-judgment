@@ -1,5 +1,5 @@
 <h2>New Users</h2>
-<%= link_to '[ <- back to list ]', users_path, class: "back-link" %>
+<%= link_to '[ <- back to list ]', admin_users_path, class: "back-link" %>
 
 <%= form_with model: @users do |formCSV| %>
 <%= formCSV.hidden_field :hasCSV, value: true %>
