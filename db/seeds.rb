@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 Question.destroy_all
-
 Question.create!([
   {
     "situation": "A patient has arrived complaining of leg swelling.",
@@ -16,7 +15,7 @@ Question.create!([
     "option2": "Cirrhosis",
     "option3": "Cellulitis",
     "option4": "Deep Vein Thrombosis",
-    "answer": "Lymphedema"
+    "answer": 1
   },
   {
     "situation": "A parent brings in a child suffering from a breathing problem and coughing that will not stop.",
@@ -26,7 +25,7 @@ Question.create!([
     "option2": "Asthma",
     "option3": "Bronchitis",
     "option4": "Sinusitis",
-    "answer": "Croup"
+    "answer": 1
   },
   {
     "situation": "A patient has arrived with a spot of discolored spots.",
@@ -36,7 +35,7 @@ Question.create!([
     "option2": "Kaposi Sarcoma",
     "option3": "Melanoma",
     "option4": "Radiation Tattoo",
-    "answer": "Blue Nevi"
+    "answer": 1
   },
   {
     "situation": "A parent has arrived with their child who appears to have discoloration of the skin. What is your first impression?", 
@@ -46,7 +45,7 @@ Question.create!([
     "option2": "Purpura",
     "option3": "Bruising",
     "option4": "Mongolian Spots",
-    "answer": "Acute Hemorrhagic Oedema Of Infancy"
+    "answer": 1
   },
   {
     "situation": "A patient has arrived with a swollen neck and protruding eyeballs.",
@@ -56,7 +55,7 @@ Question.create!([
     "option2": "Thyroid Cancer",
     "option3": "Hashimoto's Disease",
     "option4": "Radiation Exposure",
-    "answer": "Graves' Disease"
+    "answer": 1
   },
   {
     "situation": "A patient has arrived with chest pain on the left side.",
@@ -66,7 +65,7 @@ Question.create!([
     "option2": "Heart Failure",
     "option3": "Pneumonia",
     "option4": "Stroke",
-    "answer": "Angina"
+    "answer": 1
   },
   {
     "situation": "A child is complaining about swollen throat with a sudden spike in temperature.",
@@ -76,7 +75,7 @@ Question.create!([
     "option2": "Canker Sore",
     "option3": "Gum Disease",
     "option4": "Skin Ulcer",
-    "answer": "Herpangina"
+    "answer": 1
   },
   {
     "situation": "A patient has a rash on their leg that appeared after a camping trip.",
@@ -86,7 +85,7 @@ Question.create!([
     "option2": "Eczema",
     "option3": "Skin Cancer",
     "option4": "Shingles",
-    "answer": "Lyme Disease"
+    "answer": 1
   },
   {
     "situation": "A patient has a redness and burning that is causing problems when eating and swallowing on their tongue.",
@@ -96,7 +95,7 @@ Question.create!([
     "option2": "Burning Mouth Syndrome",
     "option3": "Lie Bumps",
     "option4": "Allergic Reaction (Mouth)",
-    "answer": "Thrush"
+    "answer": 1
   },
   {
     "situation": "Your patient arrives complaining of a skin rash.",
@@ -106,8 +105,86 @@ Question.create!([
     "option2": "Seborrheic Dermatitis",
     "option3": "Ringworm",
     "option4": "Jock Itch",
-    "answer": "Psoriasis"
+    "answer": 1
   }
 ])
-
 p "Created #{Question.count} questions"
+
+Course.destroy_all
+Course.create!([
+  {
+    "name": "Spring 2022"
+  },
+  {
+    "name": "Summer 2022"
+  },
+  {
+    "name": "Fall 2022"
+  }
+])
+p "Created #{Course.count} courses"
+
+User.destroy_all
+User.create!([
+  {
+    "email": "alec@rawlins.com",
+    "password": "sdvnmeqrkve123",
+    "course_id": 1,
+    "admin": 1
+  },
+  {
+    "email": "spring_user@snap.com",
+    "password": "sdcafkjvnef",
+    "course_id": 1,
+    "admin": 0
+  },
+  {
+    "email": "another_spring@snap.com",
+    "password": "sfvwerfwerf",
+    "course_id": 1,
+    "admin": 0
+  },
+  {
+    "email": "richard.ledger@lanebryant.com",
+    "password": "sfcmnasfndf12345678",
+    "course_id": 2,
+    "admin": 1
+  },
+  {
+    "email": "summer_user@snap.com",
+    "password": "sdcafkjvnef",
+    "course_id": 2,
+    "admin": 0
+  },
+  {
+    "email": "another_summer@snap.com",
+    "password": "sfvwerfwerf",
+    "course_id": 2,
+    "admin": 0
+  },
+  {
+    "email": "medialedger@gmail.com",
+    "password": "wrkjnwrfkjbn123",
+    "course_id": 3,
+    "admin": 1
+  },
+  {
+    "email": "2ledgers@gmail.com",
+    "password": "wecscwd",
+    "course_id": 3,
+    "admin": 0
+  },
+  {
+    "email": "me@me.com",
+    "password": "svkjnergv123",
+    "course_id": 3,
+    "admin": 0
+  },
+  {
+    "email": "fall_user@fu.edu",
+    "password": "sdsefsdfsdf123",
+    "course_id": 3,
+    "admin": 0
+  }
+])
+p "Created #{User.count} users"

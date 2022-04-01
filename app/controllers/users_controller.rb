@@ -15,12 +15,12 @@ class UsersController < ApplicationController
 		@courses = Course.all
 	end
 	def create
-		if params[:usersCSV]
-			User.add_from_csv(params)
-			redirect_to users_path(course_id: params[:course_id])
+		if params[:user][:hasCSV] == 'true'
+			User.add_from_csv(params[:user])
+			redirect_to users_path(course_id: params[:user][:course_id])
 		else
-			User.create(email: params[:email], password: params[:password], course_id: params[:course_id], admin: params[:admin])
-			redirect_to users_path(course_id: params[:course_id])
+			User.create(user_params)
+			redirect_to users_path(course_id: params[:user][:course_id])
 		end
 	end
 	def edit
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 		@courses = Course.all
 	end
 	def update
-		User.update(params[:id], email: params[:email], password: params[:password], course_id: params[:course_id], admin: params[:admin])
+		User.update(params[:id], user_params)
 		redirect_to users_path(course_id: params[:course_id])
 	end
 	def destroy
@@ -36,4 +36,7 @@ class UsersController < ApplicationController
 		User.destroy(params[:id])
 		redirect_to users_path(course_id: this_user[:course_id])
 	end
+	def user_params
+		params.require(:user).permit(:email, :password, :course_id, :admin)
+	end 
 end

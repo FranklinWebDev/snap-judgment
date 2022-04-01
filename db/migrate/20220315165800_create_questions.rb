@@ -8,7 +8,7 @@ class CreateQuestions < ActiveRecord::Migration[7.0]
       t.string :option2
       t.string :option3
       t.string :option4
-      t.string :answer
+      t.integer :answer
 
       t.timestamps
     end

@@ -1,34 +1,36 @@
 <h2>New Users</h2>
 <%= link_to '[ <- back to list ]', users_path, class: "back-link" %>
 
-<form action="<%= users_path %>" enctype="multipart/form-data" method="post">
+<%= form_with model: @users do |formCSV| %>
+<%= formCSV.hidden_field :hasCSV, value: true %>
 <ul class="item-list">
-	<li><label for="course_id">Class:</label>
-		<select name="course_id" id="course_id">
-			<% @courses.each do |c| %>
-				<% if params[:course_id].to_i == c.id.to_i %>
-					<% is_selected = ' selected' %>
-				<% end %>
-				<option value="<%= c.id %>"<%= is_selected %>><%= c.name %></option>
-			<% end %>
-		</select>
+	<li><%= formCSV.label :course_id,'Class: ' %>
+		<%= formCSV.select(:course_id, options_from_collection_for_select(@courses, :id, :name)) %>
 	</li>
-	<li><label for="usersCSV">Upload CSV file:</label>
-		<input type="file" name="usersCSV" id="usersCSV">
+	<li><%= formCSV.label :usersCSV, 'Upload CSV file: ' %>
+		<%= formCSV.file_field :usersCSV %>
 	</li>
-	<li>OR...</li>
-	<li><label for="email">Email:</label>
-		<input type="text" name="email" id="email">
-	</li>
-	<li><label for="password">Password:</label>
-		<input type="password" name="password" id="password">
-	</li>
-	<li><label for="admin">Admin?</label>
-		<select name="admin" id="admin">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</select>
-	</li>
-	<li><input type="submit" value="Add User(s)"> <%= link_to '[ cancel ]', users_path, class: "edit-link" %></li>
+	<li><%= formCSV.submit 'Upload Users' %></li>
 </ul>
-</form>
+<% end %>
+
+<p>OR…</p>
+
+<%= form_with model: @users do |form| %>
+<%= form.hidden_field :hasCSV, value: false %>
+<ul class="item-list">
+	<li><%= form.label :course_id,'Class: ' %>
+		<%= form.select(:course_id, options_from_collection_for_select(@courses, :id, :name)) %>
+	</li>
+	<li><%= form.label :email, 'Email: ' %>
+		<%= form.email_field :email %>
+	</li>
+	<li><%= form.label :password, 'Password: ' %>
+		<%= form.password_field :password %>
+	</li>
+	<li><%= form.label :admin, 'Admin? ' %>
+		<%= form.select(:admin, options_for_select([['No', false],['Yes', true]])) %>
+	</li>
+	<li><%= form.submit 'Add User' %></li>
+</ul>
+<% end %>

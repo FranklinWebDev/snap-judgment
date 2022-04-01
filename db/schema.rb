@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_155055) do
     t.string "option2"
     t.string "option3"
     t.string "option4"
-    t.string "answer"
+    t.integer "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

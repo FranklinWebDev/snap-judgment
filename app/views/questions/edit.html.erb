@@ -1,47 +1,47 @@
 <h2>Edit Question</h2>
-<%= link_to '[ <- back to list ]', questions_path, class: "back-link" %>
+<%= link_to '[ <- back to list ]', questions_path, class: 'back-link' %>
 
 <%= form_with model: @question do |form| %>
-<ul class="item-list">
+<ul class='item-list'>
 	<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %>
-		<%= form.label "Question Photo" %>
+		<%= form.label 'Question Photo' %>
 		<%= form.file_field :question_image %>
 	</li>
 	<li>
-		<%= form.label "Question:" %>
+		<%= form.label 'Question:' %>
 		<%= form.text_field :situation %>
 	</li>
 	<li>
-		<%= form.label "Description:" %>
+		<%= form.label 'Description:' %>
 		<%= form.text_area :description %>
 	</li>
 	<li>
-		<%= form.label "Hint:" %>
+		<%= form.label 'Hint:' %>
 		<%= form.text_field :hint %>
 	</li>
 	<li>
-		<%= form.label "Option #1:" %>
-		<%= form.text_field :option1 %>
+		<%= form.label 'Option #1:' %>
+		<%= form.text_field :option1 %>	
 	</li>
 	<li>
-		<%= form.label "Option #2:" %>
+		<%= form.label 'Option #2:' %>
 		<%= form.text_field :option2 %>
 	</li>
 	<li>
-		<%= form.label "Option #3:" %>
+		<%= form.label 'Option #3:' %>r
 		<%= form.text_field :option3 %>
 	</li>
 	<li>
-		<%= form.label "Option #4:" %>
+		<%= form.label 'Option #4:' %>
 		<%= form.text_field :option4 %>
 	</li>
 	<li>
-		<%= form.label "Answer:" %>
-		<%= form.text_field :answer %>
+		<%= form.label 'Answer:' %>
+		<%= form.select(:answer, options_for_select([['option #1', 1],['option #2', 2],['option #3', 3],['option #4', 4]], @question.answer)) %>
 	</li>
 	<li>
-		<%= form.submit "Update Question" %>
-		<%= link_to '[ cancel ]', questions_path, class: "edit-link" %>
+		<%= form.submit 'Update Question' %>
+		<%= link_to '[ cancel ]', questions_path, class: 'edit-link' %>
 	</li>
 </ul>
 <% end %>
