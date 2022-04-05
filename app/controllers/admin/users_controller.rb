@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+	layout "admin"
 	def index
 		if params[:course_id]
 			@users = Admin::User.where(course_id: params[:course_id])
@@ -11,7 +12,7 @@ class Admin::UsersController < ApplicationController
 		@user = Admin::User.find(params[:id])
 	end
 	def new
-		@users = Admin::User.new
+		@user = Admin::User.new
 		@courses = Admin::Course.all
 	end
 	def create
@@ -19,8 +20,12 @@ class Admin::UsersController < ApplicationController
 			Admin::User.add_from_csv(params[:admin_user])
 			redirect_to admin_users_path(course_id: params[:admin_user][:course_id])
 		else
-			Admin::User.create(user_params)
-			redirect_to admin_users_path(course_id: params[:admin_user][:course_id])
+			@user = Admin::User.new(user_params)
+			if @user.save
+				redirect_to admin_users_path(course_id: params[:admin_user][:course_id]), alert: "New user added."
+			else
+				redirect_to admin_users_path(course_id: params[:admin_user][:course_id]), alert: :unprocessable_entity
+			end
 		end
 	end
 	def edit
@@ -37,6 +42,6 @@ class Admin::UsersController < ApplicationController
 		redirect_to admin_users_path(course_id: this_user[:course_id])
 	end
 	def user_params
-		params.require(:admin_user).permit(:email, :password, :course_id, :admin)
+		params.require(:admin_user).permit(:email, :password_digest, :course_id, :admin)
 	end 
 end

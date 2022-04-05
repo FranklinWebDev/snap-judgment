@@ -1,6 +1,12 @@
 <h2>Users index</h2>
 <%= link_to '[ + add new users ]', new_admin_user_path, class: "add-link" %>
 
+<% flash.each do |type, msg| %>
+	<div class="alert alert-info">
+		<%= msg %>
+	</div>
+<% end %>
+
 <form action="" method="get" onchange="this.submit()" class="course-switch">
 	<select name="course_id">
 		<% @courses.each do |c| %>

@@ -1,4 +1,5 @@
 class Admin::CoursesController < ApplicationController
+	layout "admin"
 	def index
 		@courses = Admin::Course.all
 	end

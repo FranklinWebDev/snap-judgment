@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Question.destroy_all
-Question.create!([
+Admin::Question.destroy_all
+Admin::Question.create!([
   {
     "situation": "A patient has arrived complaining of leg swelling.",
     "description": "Lymphedema, also known as lymphoedema and lymphatic edema, is a condition of localized swelling caused by a compromised lymphatic system. The lymphatic system functions as a critical portion of the body's immune system and returns interstitial fluid to the bloodstream.",
@@ -108,10 +108,10 @@ Question.create!([
     "answer": 1
   }
 ])
-p "Created #{Question.count} questions"
+p "Created #{Admin::Question.count} questions"
 
-Course.destroy_all
-Course.create!([
+Admin::Course.destroy_all
+Admin::Course.create!([
   {
     "name": "Spring 2022"
   },
@@ -122,69 +122,69 @@ Course.create!([
     "name": "Fall 2022"
   }
 ])
-p "Created #{Course.count} courses"
+p "Created #{Admin::Course.count} courses"
 
-User.destroy_all
-User.create!([
+Admin::User.destroy_all
+Admin::User.create!([
   {
     "email": "alec@rawlins.com",
-    "password": "sdvnmeqrkve123",
+    "password_digest": "sdvnmeqrkve123",
     "course_id": 1,
     "admin": 1
   },
   {
     "email": "spring_user@snap.com",
-    "password": "sdcafkjvnef",
+    "password_digest": "sdcafkjvnef",
     "course_id": 1,
     "admin": 0
   },
   {
     "email": "another_spring@snap.com",
-    "password": "sfvwerfwerf",
+    "password_digest": "sfvwerfwerf",
     "course_id": 1,
     "admin": 0
   },
   {
     "email": "richard.ledger@lanebryant.com",
-    "password": "sfcmnasfndf12345678",
+    "password_digest": "sfcmnasfndf12345678",
     "course_id": 2,
     "admin": 1
   },
   {
     "email": "summer_user@snap.com",
-    "password": "sdcafkjvnef",
+    "password_digest": "sdcafkjvnef",
     "course_id": 2,
     "admin": 0
   },
   {
     "email": "another_summer@snap.com",
-    "password": "sfvwerfwerf",
+    "password_digest": "sfvwerfwerf",
     "course_id": 2,
     "admin": 0
   },
   {
     "email": "medialedger@gmail.com",
-    "password": "wrkjnwrfkjbn123",
+    "password_digest": "wrkjnwrfkjbn123",
     "course_id": 3,
     "admin": 1
   },
   {
     "email": "2ledgers@gmail.com",
-    "password": "wecscwd",
+    "password_digest": "wecscwd",
     "course_id": 3,
     "admin": 0
   },
   {
     "email": "me@me.com",
-    "password": "svkjnergv123",
+    "password_digest": "svkjnergv123",
     "course_id": 3,
     "admin": 0
   },
   {
     "email": "fall_user@fu.edu",
-    "password": "sdsefsdfsdf123",
+    "password_digest": "sdsefsdfsdf123",
     "course_id": 3,
     "admin": 0
   }
 ])
-p "Created #{User.count} users"
+p "Created #{Admin::User.count} users"
