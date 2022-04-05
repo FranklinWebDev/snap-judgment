@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_155055) do
     t.string "password_digest", null: false
     t.integer "course_id"
     t.boolean "admin"
+    t.string "session_questions"
     t.datetime "confirmed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
