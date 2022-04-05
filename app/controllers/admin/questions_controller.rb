@@ -1,4 +1,5 @@
 class Admin::QuestionsController < ApplicationController
+	before_action :require_admin_user
 	layout "admin"
 	def index
 		@questions = Admin::Question.all
@@ -10,8 +11,12 @@ class Admin::QuestionsController < ApplicationController
 		@question = Admin::Question.new
 	end
 	def create
-		Admin::Question.create(question_params)
-		redirect_to admin_questions_path,  alert: "Question has added."
+		@question = Admin::Question.create(question_params)
+		if @question.save
+			redirect_to admin_questions_path, alert: "Question has been added."
+		else
+			redirect_to admin_questions_path, alert: :unprocessable_entity
+		end
 	end
 	def edit
 		@question = Admin::Question.find(params[:id])

@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+	before_action :require_admin_user
 	layout "admin"
 	def index
 		if params[:course_id]
@@ -22,6 +23,7 @@ class Admin::UsersController < ApplicationController
 		else
 			@user = Admin::User.new(user_params)
 			if @user.save
+				session[:user_id] = @user.id 
 				redirect_to admin_users_path(course_id: params[:admin_user][:course_id]), alert: "New user added."
 			else
 				redirect_to admin_users_path(course_id: params[:admin_user][:course_id]), alert: :unprocessable_entity
@@ -42,6 +44,6 @@ class Admin::UsersController < ApplicationController
 		redirect_to admin_users_path(course_id: this_user[:course_id])
 	end
 	def user_params
-		params.require(:admin_user).permit(:email, :password_digest, :course_id, :admin)
+		params.require(:admin_user).permit(:email, :password, :course_id, :admin)
 	end 
 end

@@ -1,0 +1,8 @@
+<h1>Log in</h1>
+<%= form_with model: @session do |form| %> 
+	<%= form.label :email, 'Email: ' %>
+	<%= form.email_field :email, required: true %>
+	<%= form.label :email, 'Password: ' %>
+	<%= form.password_field :password, required: true %>
+	<%= form.submit 'Log in' %>
+<% end %>

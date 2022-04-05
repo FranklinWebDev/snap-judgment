@@ -25,11 +25,8 @@
 		<li><%= form.label :email, 'Email: ' %>
 			<%= form.email_field :email, required: true %>
 		</li>
-		<li><%= form.label :password_digest, 'Password: ' %>
-			<%= form.password_field :password_digest, required: true %>
-		</li>
-		<li><%= form.label :password_confirmation, 'Confirm Password: ' %>
-			<%= form.password_field :password_confirmation, required: true %>
+		<li><%= form.label :password, 'Password: ' %>
+			<%= form.password_field :password, required: true %>
 		</li>
 		<li><%= form.label :admin, 'Admin? ' %>
 			<%= form.select(:admin, options_for_select([['No', false],['Yes', true]])) %>

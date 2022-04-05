@@ -1,4 +1,5 @@
 class Admin::CoursesController < ApplicationController
+	before_action :require_admin_user
 	layout "admin"
 	def index
 		@courses = Admin::Course.all
