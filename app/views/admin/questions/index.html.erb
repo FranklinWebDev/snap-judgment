@@ -1,14 +1,19 @@
-<h2>Questions index</h2>
-<%= link_to '[ + add new question ]', new_admin_question_path, class: "add-link" %>
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2>Questions index</h2>
+		<%= link_to '[ + add new question ]', new_admin_question_path, class: "add-link" %>
 
-<% flash.each do |type, msg| %>
-	<div class="alert alert-info">
-		<%= msg %>
+		<% flash.each do |type, msg| %>
+			<div class="alert alert-info">
+				<%= msg %>
+			</div>
+		<% end %>
+
+		<ul class="item-list">
+			<% @questions.each do |q| %>
+				<li><%= link_to '[ edit ]', edit_admin_question_path(q.id), class: "edit-link" %> <%= button_to '[ delete ]', admin_question_path(q.id), method: 'delete' %> <%= link_to q.situation, admin_question_path(q.id), class: "item-link" %></li>
+			<% end %>
+		</ul>
 	</div>
-<% end %>
-
-<ul class="item-list">
-	<% @questions.each do |q| %>
-		<li><%= link_to '[ edit ]', edit_admin_question_path(q.id), class: "edit-link" %> <%= button_to '[ delete ]', admin_question_path(q.id), method: 'delete' %> <%= link_to q.situation, admin_question_path(q.id), class: "item-link" %></li>
-	<% end %>
-</ul>
+</main>

@@ -16,7 +16,7 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="/">Snap Judgement</a>
 				<button class="navbar-toggler btn btn-dark d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,9 +36,14 @@
 					</ul>
 					<div class="d-flex">
 						<ul class="navbar-nav me-auto mb-2 mb-md-0">
+							<% if is_admin_user %>
+							<li>
+								<%= link_to 'Admin', admin_path, class: 'nav-link' %>
+							</li>
+							<% end %>
 							<li class="nav-item">
 								<% if current_user %>
-									<%= button_to "Log out", logout_path, method: :delete %>
+									<%= button_to "Log out", logout_path, method: :delete, class: 'nav-link' %>
 								<% else %>
 									<%= link_to 'Login', login_path, class: 'nav-link' %>
 								<% end %>

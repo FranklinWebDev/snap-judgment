@@ -1,11 +1,10 @@
 class Admin::UsersController < ApplicationController
-	before_action :require_admin_user
-	layout "admin"
+	before_action :require_is_admin_user
 	def index
 		if params[:course_id]
-			@users = Admin::User.where(course_id: params[:course_id])
+			@users = Admin::User.where(course_id: params[:course_id]).order('created_at asc')
 		else
-			@users = Admin::User.where(course_id: Admin::Course.first.id)
+			@users = Admin::User.where(course_id: Admin::Course.first.id).order('created_at asc')
 		end
 		@courses = Admin::Course.all
 	end
@@ -23,7 +22,6 @@ class Admin::UsersController < ApplicationController
 		else
 			@user = Admin::User.new(user_params)
 			if @user.save
-				session[:user_id] = @user.id 
 				redirect_to admin_users_path(course_id: params[:admin_user][:course_id]), alert: "New user added."
 			else
 				redirect_to admin_users_path(course_id: params[:admin_user][:course_id]), alert: :unprocessable_entity
@@ -44,6 +42,6 @@ class Admin::UsersController < ApplicationController
 		redirect_to admin_users_path(course_id: this_user[:course_id])
 	end
 	def user_params
-		params.require(:admin_user).permit(:email, :password, :course_id, :admin)
+		params.require(:admin_user).permit(:email, :password, :course_id, :is_admin)
 	end 
 end

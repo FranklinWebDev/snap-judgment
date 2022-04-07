@@ -1,20 +1,25 @@
-<h2>Edit User</h2>
-<%= link_to '[ <- back to list ]', admin_users_path(course_id: @user.course_id), class: "back-link" %>
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2>Edit User</h2>
+		<%= link_to '[ <- back to list ]', admin_users_path(course_id: @user.course_id), class: "back-link" %>
 
-<%= form_with model: @user do |form| %>
-<ul class="item-list">
-	<li><%= form.label :course_id,'Class: ' %>
-		<%= form.select(:course_id, options_from_collection_for_select(@courses, :id, :name, @user.course_id)) %>
-	</li>
-	<li><%= form.label :email, 'Email: ' %>
-		<%= form.email_field :email %>
-	</li>
-	<li><%= form.label :password, 'Password: ' %>
-		<%= form.password_field :password %>
-	</li>
-	<li><%= form.label :admin, 'Admin? ' %>
-		<%= form.select(:admin, options_for_select([['No', false],['Yes', true]], @user.admin)) %>
-	</li>
-	<li><%= form.submit 'Update User' %> <%= link_to "[ cancel ]", :back, class: "edit-link" %></li>
-</ul>
-<% end %>
+		<%= form_with model: @user do |form| %>
+		<ul class="item-list">
+			<li><%= form.label :course_id,'Class: ' %>
+				<%= form.select(:course_id, options_from_collection_for_select(@courses, :id, :name, @user.course_id)) %>
+			</li>
+			<li><%= form.label :email, 'Email: ' %>
+				<%= form.email_field :email %>
+			</li>
+			<li><%= form.label :password, 'Password: ' %>
+				<%= form.password_field :password %>
+			</li>
+			<li><%= form.label :is_admin, 'Admin? ' %>
+				<%= form.select(:is_admin, options_for_select([['No', false],['Yes', true]], @user.is_admin)) %>
+			</li>
+			<li><%= form.submit 'Update User' %> <%= link_to "[ cancel ]", :back, class: "edit-link" %></li>
+		</ul>
+		<% end %>
+	</div>
+</main>

@@ -1,8 +1,7 @@
 class Admin::CoursesController < ApplicationController
-	before_action :require_admin_user
-	layout "admin"
+	before_action :require_is_admin_user
 	def index
-		@courses = Admin::Course.all
+		@courses = Admin::Course.all.order('created_at asc')
 	end
 	def show
 		@course = Admin::Course.find(params[:id])

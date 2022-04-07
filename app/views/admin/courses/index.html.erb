@@ -1,14 +1,19 @@
-<h2>Courses index</h2>
-<%= link_to '[ + add new course ]', new_admin_course_path, class: "add-link" %>
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2>Courses index</h2>
+		<%= link_to '[ + add new course ]', new_admin_course_path, class: "add-link" %>
 
-<% flash.each do |type, msg| %>
-	<div class="alert alert-info">
-		<%= msg %>
+		<% flash.each do |type, msg| %>
+			<div class="alert alert-info">
+				<%= msg %>
+			</div>
+		<% end %>
+
+		<ul class="item-list">
+			<% @courses.each do |c| %>
+				<li><%= link_to '[ edit ]', edit_admin_course_path(c.id), class: "edit-link" %> <%= button_to '[ delete ]', admin_course_path(c.id), method: 'delete' %> <%= c.name %></li>
+			<% end %>
+		</ul>
 	</div>
-<% end %>
-
-<ul class="item-list">
-	<% @courses.each do |c| %>
-		<li><%= link_to '[ edit ]', edit_admin_course_path(c.id), class: "edit-link" %> <%= button_to '[ delete ]', admin_course_path(c.id), method: 'delete' %> <%= c.name %></li>
-	<% end %>
-</ul>
+</main>

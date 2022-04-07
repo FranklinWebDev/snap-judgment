@@ -1,6 +1,5 @@
 class QuizController < ApplicationController
 	before_action :require_user
-	layout "quiz"
 	def index
 		if session[:current_question] <= 9
 			@question = Admin::Question.find(session[:quiz_questions][session[:current_question]])

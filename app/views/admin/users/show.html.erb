@@ -1,10 +1,20 @@
-<h2>Show User</h2>
-<%= link_to '[ <- back to list ]', admin_users_path(course_id: @user.course_id), class: "back-link" %>
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2>Show User</h2>
+		<%= link_to '[ <- back to list ]', admin_users_path(course_id: @user.course_id), class: "back-link" %>
 
-<ul class="item-list">
-	<li><h4>Email:</h4> <%= @user.email %></li>
-	<li><h4>Password:</h4> <%= @user.password %></li>
-	<li><h4>Class:</h4> <%= Admin::Course.find(@user.course_id).name %></li>
-	<li><h4>Admin?</h4> <%= @user.admin ? 'Yes' : 'No' %></li>
-	<li><%= link_to '[ edit ]', edit_admin_user_path(@user.id), class: "edit-link" %> <%= button_to '[ delete ]', @user, method: 'delete' %></li>
-</ul>
+		<ul class="item-list">
+			<li><h4>Email:</h4> <%= @user.email %></li>
+			<li><h4>Class:</h4> <%= Admin::Course.find(@user.course_id).name %></li>
+			<li><h4>Admin?</h4> <%= @user.is_admin ? 'Yes' : 'No' %></li>
+			<li><%= link_to '[ edit ]', edit_admin_user_path(@user.id), class: "edit-link" %>
+				<% if @user.id != session[:user_id] %>
+					<%= button_to '[ delete ]', @user, method: 'delete' %>
+				<% else %>
+					<%= button_to '[ delete ]', @user, method: 'delete', disabled: true %>
+				<% end %>
+			</li>
+		</ul>
+	</div>
+</main>

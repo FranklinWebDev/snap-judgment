@@ -1,25 +1,38 @@
-<h2>Users index</h2>
-<%= link_to '[ + add new users ]', new_admin_user_path, class: "add-link" %>
-
-<% flash.each do |type, msg| %>
-	<div class="alert alert-info">
-		<%= msg %>
-	</div>
-<% end %>
-
-<form action="" method="get" onchange="this.submit()" class="course-switch">
-	<select name="course_id">
-		<% @courses.each do |c| %>
-			<% if params[:course_id].to_i == c.id.to_i %>
-				<% is_selected = ' selected' %>
-			<% end %>
-			<option value="<%= c.id %>"<%= is_selected %>><%= c.name %></option>
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2>Users index</h2>
+		<%= link_to '[ + add new users ]', new_admin_user_path, class: "add-link" %>
+		
+		<% flash.each do |type, msg| %>
+			<div class="alert alert-info">
+				<%= msg %>
+			</div>
 		<% end %>
-	</select>
-</form>
+		
+		<form action="" method="get" onchange="this.submit()" class="course-switch">
+			<select name="course_id">
+				<% @courses.each do |c| %>
+					<% if params[:course_id].to_i == c.id.to_i %>
+						<% is_selected = ' selected' %>
+					<% end %>
+					<option value="<%= c.id %>"<%= is_selected %>><%= c.name %></option>
+				<% end %>
+			</select>
+		</form>
+		
+		<ul class="item-list">
+			<% @users.each do |u| %>
+				<li><%= link_to '[ edit ]', edit_admin_user_path(u.id), class: "edit-link" %>
+					<% if u.id != session[:user_id] %>
+						<%= button_to '[ delete ]', admin_user_path(u.id), method: 'delete' %>
+					<% else %>
+						<%= button_to '[ delete ]', admin_user_path(u.id), method: 'delete', disabled: true %>
+					<% end %>
+					<%= link_to u.email, admin_user_path(u.id), class: "item-link" %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</main>
 
-<ul class="item-list">
-	<% @users.each do |u| %>
-		<li><%= link_to '[ edit ]', edit_admin_user_path(u.id), class: "edit-link" %> <%= button_to '[ delete ]', admin_user_path(u.id), method: 'delete' %> <%= link_to u.email, admin_user_path(u.id), class: "item-link" %></li>
-	<% end %>
-</ul>

@@ -1,15 +1,20 @@
-<h2>Show Question</h2>
-<%= link_to '[ <- back to list ]', admin_questions_path, class: "back-link" %>
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2>Show Question</h2>
+		<%= link_to '[ <- back to list ]', admin_questions_path, class: "back-link" %>
 
-<ul class="item-list show">
-	<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %></li>
-	<li><h4>Question:</h4> <%= @question.situation %></li>
-	<li><h4>Description:</h4> <%= @question.description %></li>
-   <li><h4>Hint:</h4> <%= @question.hint %></li>
-	<li><h4>Option #1:</h4> <%= @question.option1 %></li>
-	<li><h4>Option #2:</h4> <%= @question.option2 %></li>
-	<li><h4>Option #3:</h4> <%= @question.option3 %></li>
-	<li><h4>Option #4:</h4> <%= @question.option4 %></li>
-	<li><h4>Answer:</h4> <%= @question.answer %></li>
-	<li><%= button_to '[ delete ]', @question, method: 'delete' %> <%= link_to '[ edit ]', edit_admin_question_path(@question.id), class: "edit-link" %></li>
-</ul>
+		<ul class="item-list show">
+			<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %></li>
+			<li><h4>Question:</h4> <%= @question.situation %></li>
+			<li><h4>Description:</h4> <%= @question.description %></li>
+		<li><h4>Hint:</h4> <%= @question.hint %></li>
+			<li><h4>Option #1:</h4> <%= @question.option1 %></li>
+			<li><h4>Option #2:</h4> <%= @question.option2 %></li>
+			<li><h4>Option #3:</h4> <%= @question.option3 %></li>
+			<li><h4>Option #4:</h4> <%= @question.option4 %></li>
+			<li><h4>Answer:</h4> <%= @question.answer %></li>
+			<li><%= button_to '[ delete ]', @question, method: 'delete' %> <%= link_to '[ edit ]', edit_admin_question_path(@question.id), class: "edit-link" %></li>
+		</ul>
+	</div>
+</main>

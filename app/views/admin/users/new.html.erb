@@ -1,36 +1,41 @@
-<h2>New Users</h2>
-<%= link_to '[ <- back to list ]', admin_users_path, class: "back-link" %>
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2>New Users</h2>
+		<%= link_to '[ <- back to list ]', admin_users_path, class: "back-link" %>
 
-<%= form_with model: @user do |formCSV| %>
-	<%= formCSV.hidden_field :hasCSV, value: true %>
-	<ul class="item-list">
-		<li><%= formCSV.label :course_id,'Class: ' %>
-			<%= formCSV.select(:course_id, options_from_collection_for_select(@courses, :id, :name), required: true) %>
-		</li>
-		<li><%= formCSV.label :usersCSV, 'Upload CSV file: ' %>
-			<%= formCSV.file_field :usersCSV, required: true %>
-		</li>
-		<li><%= formCSV.submit 'Upload Users' %></li>
-	</ul>
-<% end %>
+		<%= form_with model: @user do |formCSV| %>
+			<%= formCSV.hidden_field :hasCSV, value: true %>
+			<ul class="item-list">
+				<li><%= formCSV.label :course_id,'Class: ' %>
+					<%= formCSV.select(:course_id, options_from_collection_for_select(@courses, :id, :name), required: true) %>
+				</li>
+				<li><%= formCSV.label :usersCSV, 'Upload CSV file: ' %>
+					<%= formCSV.file_field :usersCSV, required: true %>
+				</li>
+				<li><%= formCSV.submit 'Upload Users' %></li>
+			</ul>
+		<% end %>
 
-<p>OR…</p>
-<%= form_with model: @user do |form| %>
-	<%= render partial: "shared/form_errors", locals: { object: form.object } %>
-	<%= form.hidden_field :hasCSV, value: false %>
-	<ul class="item-list">
-		<li><%= form.label :course_id,'Class: ' %>
-			<%= form.select(:course_id, options_from_collection_for_select(@courses, :id, :name), required: true) %>
-		</li>
-		<li><%= form.label :email, 'Email: ' %>
-			<%= form.email_field :email, required: true %>
-		</li>
-		<li><%= form.label :password, 'Password: ' %>
-			<%= form.password_field :password, required: true %>
-		</li>
-		<li><%= form.label :admin, 'Admin? ' %>
-			<%= form.select(:admin, options_for_select([['No', false],['Yes', true]])) %>
-		</li>
-		<li><%= form.submit 'Add User' %></li>
-	</ul>
-<% end %>
+		<p>OR…</p>
+		<%= form_with model: @user do |form| %>
+			<%= render partial: "shared/form_errors", locals: { object: form.object } %>
+			<%= form.hidden_field :hasCSV, value: false %>
+			<ul class="item-list">
+				<li><%= form.label :course_id,'Class: ' %>
+					<%= form.select(:course_id, options_from_collection_for_select(@courses, :id, :name), required: true) %>
+				</li>
+				<li><%= form.label :email, 'Email: ' %>
+					<%= form.email_field :email, required: true %>
+				</li>
+				<li><%= form.label :password, 'Password: ' %>
+					<%= form.password_field :password, required: true %>
+				</li>
+				<li><%= form.label :is_admin, 'Admin? ' %>
+					<%= form.select(:is_admin, options_for_select([['No', false],['Yes', true]])) %>
+				</li>
+				<li><%= form.submit 'Add User' %></li>
+			</ul>
+		<% end %>
+	</div>
+</main>

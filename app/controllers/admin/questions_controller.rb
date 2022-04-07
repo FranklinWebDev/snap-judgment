@@ -1,8 +1,7 @@
 class Admin::QuestionsController < ApplicationController
-	before_action :require_admin_user
-	layout "admin"
+	before_action :require_is_admin_user
 	def index
-		@questions = Admin::Question.all
+		@questions = Admin::Question.all.order('created_at asc')
 	end
 	def show
 		@question = Admin::Question.find(params[:id])
