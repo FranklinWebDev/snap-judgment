@@ -47,13 +47,13 @@
 			document.querySelector('.modal .btn-close').hidden = true;
 			document.querySelector('.modal .btn-try').hidden = true;
 			document.querySelector('.modal .modal-title').innerText = 'Correct!';
-			document.querySelector('.modal .modal-body').innerText = '<%= @question.description %>';
+			document.querySelector('.modal .modal-body').innerHTML = '<%= @question.description %>';
 		} else {
 			document.querySelector('.modal .btn-next').hidden = true;
 			document.querySelector('.modal .btn-close').hidden = false;
 			document.querySelector('.modal .btn-try').hidden = false;
 			document.querySelector('.modal .modal-title').innerText = 'Incorrect!';
-			document.querySelector('.modal .modal-body').innerText = '<%= @question.hint %>';
+			document.querySelector('.modal .modal-body').innerHTML = '<%= @question.hint %>';
 		}
 	}
 	function evaluateButtons() {
