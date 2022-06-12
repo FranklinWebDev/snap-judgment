@@ -127,6 +127,12 @@ p "Created #{Admin::Course.count} courses"
 Admin::User.destroy_all
 Admin::User.create!([
   {
+    "email": "admin@email.com",
+    "password": "admin",
+    "course_id": 1,
+    "is_admin": 1
+  },  
+{
     "email": "alec@rawlins.com",
     "password": "alec",
     "course_id": 1,

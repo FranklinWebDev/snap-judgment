@@ -4,12 +4,15 @@ lightBlue: #AFC5DB
 darkText: #00274D
 */
 
-.footer {
-	position: fixed;
+footer {
+	/* position: fixed; */
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	text-align: left;
+	background-color: #00274D;
+	color: #fff;
+	/* text-transform: uppercase; */
 }
 
 .leading {
