@@ -5,11 +5,11 @@ darkText: #00274D
 */
 
 footer {
-	/* position: fixed; */
+	/* position: fixed;
 	left: 0;
 	bottom: 0;
-	width: 100%;
-	text-align: left;
+	width: 100%; 
+	text-align: left; */
 	background-color: #00274D;
 	color: #fff;
 	/* text-transform: uppercase; */
