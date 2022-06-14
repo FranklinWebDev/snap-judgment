@@ -5,14 +5,18 @@ darkText: #00274D
 */
 
 footer {
-	/* position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%; 
-	text-align: left; */
 	background-color: #00274D;
 	color: #fff;
+}
+
+.footer-link {
+	text-decoration: none;
+	color: #ffffff8c;
 	/* text-transform: uppercase; */
+}
+
+.footer-link:hover, svg:hover {
+	color: #ffffffbf;
 }
 
 .leading {
@@ -63,7 +67,7 @@ main.public {
     background-size: 50vh;
     background-position-y: center;
     background-position-x: center;
-	min-height: calc(100vh - 3.5em);
+	min-height: calc(80vh);
 }
 
 nav.navbar.navbar-dark {
