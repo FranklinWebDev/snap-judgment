@@ -9,6 +9,12 @@
 			<li><%= form.label :course_id,'Class: ' %>
 				<%= form.select(:course_id, options_from_collection_for_select(@courses, :id, :name, @user.course_id)) %>
 			</li>
+			<li><%= form.label :first_name, 'First Name: ' %>
+				<%= form.text_field :first_name, required: true %>
+			</li>
+			<li><%= form.label :last_name, 'Last Name: ' %>
+				<%= form.text_field :last_name, required: true %>
+			</li>
 			<li><%= form.label :email, 'Email: ' %>
 				<%= form.email_field :email %>
 			</li>
