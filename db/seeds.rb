@@ -129,68 +129,10 @@ Admin::User.create!([
   {
     "email": "admin@email.com",
     "password": "admin",
+    "first_name": "Admin",
+    "last_name": "Admino"
     "course_id": 1,
     "is_admin": 1
-  },  
-{
-    "email": "alec@rawlins.com",
-    "password": "alec",
-    "course_id": 1,
-    "is_admin": 1
-  },
-  {
-    "email": "spring_user@snap.com",
-    "password": "sdcafkjvnef",
-    "course_id": 1,
-    "is_admin": 0
-  },
-  {
-    "email": "another_spring@snap.com",
-    "password": "sfvwerfwerf",
-    "course_id": 1,
-    "is_admin": 0
-  },
-  {
-    "email": "richard.ledger@lanebryant.com",
-    "password": "sfcmnasfndf12345678",
-    "course_id": 2,
-    "is_admin": 1
-  },
-  {
-    "email": "summer_user@snap.com",
-    "password": "sdcafkjvnef",
-    "course_id": 2,
-    "is_admin": 0
-  },
-  {
-    "email": "another_summer@snap.com",
-    "password": "sfvwerfwerf",
-    "course_id": 2,
-    "is_admin": 0
-  },
-  {
-    "email": "medialedger@gmail.com",
-    "password": "wrkjnwrfkjbn123",
-    "course_id": 3,
-    "is_admin": 1
-  },
-  {
-    "email": "2ledgers@gmail.com",
-    "password": "wecscwd",
-    "course_id": 3,
-    "is_admin": 0
-  },
-  {
-    "email": "me@me.com",
-    "password": "svkjnergv123",
-    "course_id": 3,
-    "is_admin": 0
-  },
-  {
-    "email": "fall_user@fu.edu",
-    "password": "sdsefsdfsdf123",
-    "course_id": 3,
-    "is_admin": 0
   }
 ])
 p "Created #{Admin::User.count} users"
