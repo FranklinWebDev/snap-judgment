@@ -59,8 +59,10 @@ body.page-about main {
 }
 
 main {
-    padding-top: 112px;    
+    padding-top: 5%;
+	padding-bottom: 5%;    
 }
+
 main.public {
     background: url("COHPA_Blue_10.jpg");
     background-repeat: no-repeat;
