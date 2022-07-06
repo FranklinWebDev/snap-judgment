@@ -42,6 +42,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "answers", primary_key: "answer_id", id: :bigint, default: nil, force: :cascade do |t|
+    t.string "answer_text", null: false
+    t.boolean "is_answer", default: false, null: false
+    t.bigint "question_id", null: false
+    t.time "created_at", precision: 6, null: false
+    t.time "updated_at", precision: 6, null: false
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -61,6 +69,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "results", primary_key: "result_id", id: :bigint, default: nil, force: :cascade do |t|
+    t.integer "score", null: false
+    t.integer "attempt", null: false
+    t.bigint "user_id", null: false
+    t.time "created_at", precision: 6
+  end
+
+  create_table "submissions", primary_key: "submission_id", id: :bigint, default: nil, force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "answer_id", null: false
+    t.boolean "is_answer", null: false
+    t.bigint "user_id", null: false
+    t.time "created_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -77,4 +100,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answers", "questions", name: "question_fkey"
+  add_foreign_key "results", "users", name: "result_fkey"
+  add_foreign_key "submissions", "answers", primary_key: "answer_id", name: "answer_fkey"
+  add_foreign_key "submissions", "questions", name: "question_fkey"
+  add_foreign_key "submissions", "users", name: "user_fkey"
+  add_foreign_key "users", "courses", name: "course_fkey"
 end
