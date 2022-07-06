@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'results/hello'
 
   root to: 'purpose#index'
 

@@ -42,6 +42,6 @@ class Admin::UsersController < ApplicationController
 		redirect_to admin_users_path(course_id: this_user[:course_id])
 	end
 	def user_params
-		params.require(:admin_user).permit(:email, :first_name, :last_name, :password, :course_id, :is_admin)
+		params.require(:admin_user).permit(:first_name, :last_name, :email, :password, :course_id, :is_admin)
 	end 
 end
