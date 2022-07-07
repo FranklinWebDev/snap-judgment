@@ -81,7 +81,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
     t.bigint "answer_id", null: false
     t.boolean "is_answer", null: false
     t.bigint "user_id", null: false
-    t.time "created_at", precision: 6, null: false
+    t.time "time_start", precision: 6, null: false
+    t.time "time_end"
   end
 
   create_table "users", force: :cascade do |t|
