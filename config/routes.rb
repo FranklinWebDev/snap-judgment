@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :quiz, only: [:index, :create]
 
   namespace :admin do
-    resources :users, :courses, :questions
+    resources :users, :courses, :questions, :answers, :submissions, :results
   end
 
 end

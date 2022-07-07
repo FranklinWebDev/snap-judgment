@@ -9,9 +9,10 @@
 			<h3 id="Question"><%= @question.situation %></h3>
 			<br>
 			<div id="Options">
-				<% allOptions = [[@question.option1,1],[@question.option2,2],[@question.option3,3],[@question.option4,4]].shuffle %>
-				<% allOptions.each do |o, i| %>
-					<button class="btn btn-primary m-2" data-option="<%= i %>" data-bs-toggle="modal" data-bs-target="#AnswerModal"><%= o %></button>
+				<% @answers.each do |each_answer| %>
+					<% if each_answer.question_id == @question.id %><!--Display options of this question-->
+					<button class="btn btn-primary m-2" data-option="<%= each_answer.is_answer %>" data-bs-toggle="modal" data-bs-target="#AnswerModal"><%= each_answer.answer_text %></button>
+					<% end %>
 				<% end %>
 			</div>
 		</div>
@@ -41,7 +42,7 @@
 
 <script>
 	function evaluateAnswer() {
-		let theAnswer = <%= @question.answer %>;
+		let theAnswer = 'true';
 		if(this.dataset.option == theAnswer) {
 			document.querySelector('.modal .btn-next').hidden = false;
 			document.querySelector('.modal .btn-close').hidden = true;

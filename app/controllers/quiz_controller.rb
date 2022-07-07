@@ -3,6 +3,7 @@ class QuizController < ApplicationController
 	def index
 		if session[:current_question] <= 9
 			@question = Admin::Question.find(session[:quiz_questions][session[:current_question]])
+			@answers = Admin::Answer.where(question_id: @question).shuffle
 		else
 			redirect_to root_path
 		end
