@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
     t.bigint "question_id", null: false
     t.time "created_at", precision: 6, null: false
     t.time "updated_at", precision: 6, null: false
+    t.integer "points"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -67,6 +68,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
     t.integer "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "quizzes", primary_key: "quiz_id", id: :bigint, default: nil, force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.string "updated_at", limit: 6, null: false
   end
 
   create_table "results", primary_key: "result_id", id: :bigint, default: nil, force: :cascade do |t|
