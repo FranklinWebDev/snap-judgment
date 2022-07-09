@@ -43,6 +43,10 @@
 				<%= form.select(:answer, options_for_select([['option #1', 1],['option #2', 2],['option #3', 3],['option #4', 4]], @question.answer)) %>
 			</li>
 			<li>
+				<%= form.label 'Category:' %>
+				<%= form.text_field :category %>
+			</li>
+			<li>
 				<%= form.submit 'Update Question' %>
 				<%= link_to '[ cancel ]', admin_questions_path, class: 'edit-link' %>
 			</li>

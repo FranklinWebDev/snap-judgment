@@ -3,7 +3,12 @@ darkBlue: #00274D
 lightBlue: #AFC5DB
 darkText: #00274D
 */
-
+.sub-forgot{
+	width: 100%;
+}
+.forgot-label{
+	text-align: left;
+}
 footer {
 	background-color: #00274D;
 	color: #fff;
