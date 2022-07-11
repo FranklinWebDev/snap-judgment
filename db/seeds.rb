@@ -130,7 +130,7 @@ Admin::User.create!([
     "email": "admin@email.com",
     "password": "admin",
     "first_name": "Admin",
-    "last_name": "Admino"
+    "last_name": "Admino",
     "course_id": 1,
     "is_admin": 1
   }
