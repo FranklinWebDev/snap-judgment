@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'results/hello'
+  resources :submissions
+  
 
   root to: 'purpose#index'
 
@@ -12,10 +13,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :purpose, only: [:index]
   resources :about, only: [:index]
-  resources :quiz, only: [:index, :create]
+  resources :quiz, only: [:index, :show]
+  resources :results
 
   namespace :admin do
-    resources :users, :courses, :questions
+    resources :users, :courses, :querqailstions, :answers
   end
 
 end

@@ -51,6 +51,12 @@ gem "bootsnap", require: false
 # programmatically loading dynamically-linked native libraries, binding functions within them, and calling those functions from Ruby code
 gem 'ffi'
 
+gem 'will_paginate', '~> 3.3.0'
+
+gem 'will_paginate-bootstrap4'
+
+gem 'byebug', '~>11.1.3'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

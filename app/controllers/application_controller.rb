@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+	require 'will_paginate/array'
 	helper_method :current_user
 	helper_method :is_admin_user
 
