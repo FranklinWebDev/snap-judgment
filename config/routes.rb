@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :submissions
+  
 
   root to: 'purpose#index'
 
@@ -12,9 +14,10 @@ Rails.application.routes.draw do
   resources :purpose, only: [:index]
   resources :about, only: [:index]
   resources :quiz, only: [:index, :show]
+  resources :results
 
   namespace :admin do
-    resources :users, :courses, :questions, :answers, :submissions, :results
+    resources :users, :courses, :querqailstions, :answers
   end
 
 end
