@@ -34,7 +34,7 @@
                 <% if @question.id != 10%>
                     <%= button_to "Next", quiz_path.next, method: "get",  class: 'btn-next' %>
                 <% else %>
-                    <%= button_to "Done!", results_index_path, method: "get", class: 'btn-next' %>
+                    <%= button_to "Done!", purpose_index_path, method: "get", class: 'btn-next' %>
                 <% end %>
 			</div>
 		</div>

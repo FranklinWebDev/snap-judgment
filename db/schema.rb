@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_12_025912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,13 +42,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "answers", primary_key: "answer_id", id: :bigint, default: nil, force: :cascade do |t|
-    t.string "answer_text", null: false
-    t.boolean "is_answer", default: false, null: false
+  create_table "answers", force: :cascade do |t|
+    t.string "answer_text"
+    t.boolean "is_correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "question_id", null: false
-    t.time "created_at", precision: 6, null: false
-    t.time "updated_at", precision: 6, null: false
-    t.integer "points"
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -60,37 +60,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
   create_table "questions", force: :cascade do |t|
     t.string "situation"
     t.string "description"
-    t.string "hint"
-    t.string "option1"
-    t.string "option2"
-    t.string "option3"
-    t.string "option4"
-    t.integer "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "quiz_id", null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
-  create_table "quizzes", primary_key: "quiz_id", id: :bigint, default: nil, force: :cascade do |t|
-    t.string "title"
+  create_table "quizzes", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
-    t.string "updated_at", limit: 6, null: false
-  end
-
-  create_table "results", primary_key: "result_id", id: :bigint, default: nil, force: :cascade do |t|
-    t.integer "score", null: false
-    t.integer "attempt", null: false
-    t.bigint "user_id", null: false
-    t.time "created_at", precision: 6
-  end
-
-  create_table "submissions", primary_key: "submission_id", id: :bigint, default: nil, force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.bigint "answer_id", null: false
-    t.boolean "is_answer", null: false
-    t.bigint "user_id", null: false
-    t.time "time_start", precision: 6, null: false
-    t.time "time_end"
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,10 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_041611) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "answers", "questions", name: "question_fkey"
-  add_foreign_key "results", "users", name: "result_fkey"
-  add_foreign_key "submissions", "answers", primary_key: "answer_id", name: "answer_fkey"
-  add_foreign_key "submissions", "questions", name: "question_fkey"
-  add_foreign_key "submissions", "users", name: "user_fkey"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "quizzes"
   add_foreign_key "users", "courses", name: "course_fkey"
 end
