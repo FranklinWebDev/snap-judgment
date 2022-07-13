@@ -4,7 +4,7 @@
 		<h2>Edit Question</h2>
 		<%= link_to '[ <- back to list ]', admin_questions_path, class: 'back-link' %>
 
-		<%= form_with model: @question do |form| %>
+		<%= form_for @question do |form| %>
 		<ul class='item-list'>
 			<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %>
 				<%= form.label 'Question Photo' %>
@@ -18,30 +18,18 @@
 				<%= form.label 'Description:' %>
 				<%= form.text_area :description %>
 			</li>
+			<% @answers.each do |answer|%>
+			<%= form.fields_for answer do |answer_subform| %>
 			<li>
-				<%= form.label 'Hint:' %>
-				<%= form.text_field :hint %>
+				<%= answer_subform.label 'Option' %>
+				<%= answer_subform.text_field :answer_text %>
+				<div class="form-group form-check">
+					<%= answer_subform.radio_button :is_correct, 'true', :checked => (answer.is_correct == true), class:"form-check-input" %>
+					<label class="form-check-label">Correct Answer</label>
+				</div>	
 			</li>
-			<li>
-				<%= form.label 'Option #1:' %>
-				<%= form.text_field :option1 %>	
-			</li>
-			<li>
-				<%= form.label 'Option #2:' %>
-				<%= form.text_field :option2 %>
-			</li>
-			<li>
-				<%= form.label 'Option #3:' %>
-				<%= form.text_field :option3 %>
-			</li>
-			<li>
-				<%= form.label 'Option #4:' %>
-				<%= form.text_field :option4 %>
-			</li>
-			<li>
-				<%= form.label 'Answer:' %>
-				<%= form.select(:answer, options_for_select([['option #1', 1],['option #2', 2],['option #3', 3],['option #4', 4]], @question.answer)) %>
-			</li>
+			<% end %>
+			<% end %>
 			<li>
 				<%= form.label 'Category:' %>
 				<%= form.text_field :category %>

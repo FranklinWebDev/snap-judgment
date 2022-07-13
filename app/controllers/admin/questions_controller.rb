@@ -5,9 +5,11 @@ class Admin::QuestionsController < ApplicationController
 	end
 	def show
 		@question = Admin::Question.find(params[:id])
+		@answers = @question.answers
 	end
 	def new
 		@question = Admin::Question.new
+		4.times {@question.answers.build}
 	end
 	def create
 		@question = Admin::Question.create(question_params)
@@ -19,6 +21,7 @@ class Admin::QuestionsController < ApplicationController
 	end
 	def edit
 		@question = Admin::Question.find(params[:id])
+		@answers = @question.answers
 	end
 	def update
 		Admin::Question.update(params[:id],question_params)

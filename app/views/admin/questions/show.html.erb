@@ -8,6 +8,7 @@
 			<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %></li>
 			<li><h4>Question:</h4> <%= @question.situation %></li>
 			<li><h4>Description:</h4> <%= @question.description %></li>
+
 		<li><h4>Hint:</h4> <%= @question.hint %></li>
 			<li><h4>Option #1:</h4> <%= @question.option1 %></li>
 			<li><h4>Option #2:</h4> <%= @question.option2 %></li>
@@ -15,6 +16,16 @@
 			<li><h4>Option #4:</h4> <%= @question.option4 %></li>
 			<li><h4>Category:</h4> <%= @question.category %></li>
 			<li><h4>Answer:</h4> <%= @question.answer %></li>
+
+			<% @answers.each do |answer|%>
+			<li><h4>Option:</h4> <%= answer.answer_text %>
+				<div class="form-group form-check">
+					<%= radio_button_tag 'answer[is_correct]', 'true', (answer.is_correct == true), :disabled => true, class:"form-check-input" %>
+					<label class="form-check-label">Correct Answer</label>
+				</div>
+			</li>
+		<% end %>
+
 			<li><%= button_to '[ delete ]', @question, method: 'delete' %> <%= link_to '[ edit ]', edit_admin_question_path(@question.id), class: "edit-link" %></li>
 		</ul>
 	</div>
