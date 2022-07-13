@@ -5,11 +5,9 @@ class Admin::QuestionsController < ApplicationController
 	end
 	def show
 		@question = Admin::Question.find(params[:id])
-		@answers = @question.answers
 	end
 	def new
 		@question = Admin::Question.new
-		4.times {@question.answers.build}
 	end
 	def create
 		@question = Admin::Question.create(question_params)
@@ -21,7 +19,6 @@ class Admin::QuestionsController < ApplicationController
 	end
 	def edit
 		@question = Admin::Question.find(params[:id])
-		@answers = @question.answers
 	end
 	def update
 		Admin::Question.update(params[:id],question_params)
@@ -32,6 +29,7 @@ class Admin::QuestionsController < ApplicationController
 		redirect_to admin_questions_path, alert: "Question has been deleted."
 	end
 	def question_params
-		params.require(:admin_question).permit(:question_image, :situation, :description)
+		params.require(:admin_question).permit(:question_image, :situation, :description, :hint, :option1, :option2, :option3, :option4, :answer,:category)
 	end 
 end
+
