@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'login', to: 'sessions#new'
 
-  get 'admin', to: 'admin/users#index'
+  get 'admin', to: 'admin#users#index'
 
   get 'forgot_password', to: 'forgot_password#index'
 
