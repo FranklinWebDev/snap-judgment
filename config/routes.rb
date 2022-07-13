@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'admin/users#index'
 
+  get 'forgot_password', to: 'forgot_password#index'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :purpose, only: [:index]
   resources :about, only: [:index]

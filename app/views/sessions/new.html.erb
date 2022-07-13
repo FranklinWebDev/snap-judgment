@@ -11,6 +11,7 @@
 					<div class="form-group mt-3">
 						<%= form.label :email, 'Password: ' %>
 						<%= form.password_field :password, required: true, class: 'form-control' %>
+						<%= link_to "Forgot Passowrd", "../forgot_password" %>
 					</div>
 					<%= form.submit 'Log in', class: 'btn btn-primary btn-dark mt-3' %>
 				<% end %>
