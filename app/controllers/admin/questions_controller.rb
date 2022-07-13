@@ -32,3 +32,4 @@ class Admin::QuestionsController < ApplicationController
 		params.require(:admin_question).permit(:question_image, :situation, :description, :hint, :option1, :option2, :option3, :option4, :answer,:category)
 	end 
 end
+
