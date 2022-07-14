@@ -26,6 +26,10 @@
 				<label class="form-check-label">Correct Answer</label>
 			</li>
 			<% end %>
+
+			<li><%= form.label 'Category:' %>
+				<%= form.text_field :category %>
+			</li>
 			<li>
 				<%= form.submit 'Add Question' %>
 				<%= link_to '[ cancel ]', admin_questions_path, class: 'edit-link' %>

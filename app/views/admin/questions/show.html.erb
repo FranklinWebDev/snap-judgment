@@ -15,7 +15,9 @@
 					<label class="form-check-label">Correct Answer</label>
 				</div>
 			</li>
+			
 		<% end %>
+			<li><h4>Category:</h4> <%= @question.category %></li>
 			<li><%= button_to '[ delete ]', @question, method: 'delete' %> <%= link_to '[ edit ]', edit_admin_question_path(@question.id), class: "edit-link" %></li>
 		</ul>
 	</div>
