@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :submissions
-  
 
   root to: 'purpose#index'
 
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin/users#index'
 
   get 'forgot_password', to: 'forgot_password#index'
+  post 'forgot_password', to: 'forgot_password#forgot_password'
+  get 'edit_password', to: 'forgot_password#edit_password'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :purpose, only: [:index]
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   resources :results
 
   namespace :admin do
-    resources :users, :courses, :questions, :answers
+    resources :users, :courses, :questions, :answers, :semesters
   end
 
 end

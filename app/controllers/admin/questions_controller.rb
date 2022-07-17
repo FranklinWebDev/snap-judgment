@@ -9,29 +9,41 @@ class Admin::QuestionsController < ApplicationController
 	end
 	def new
 		@question = Admin::Question.new
+		authorize @question
 		4.times {@question.answers.build}
 	end
 	def create
-		@question = Admin::Question.create(question_params)
+		@question = Admin::Question.create(
+			situation: params[:admin_question][:situation],
+			description: params[:admin_question][:description],
+			category: params[:admin_question][:category],
+			quiz: Quiz.first
+		)
+		authorize @question
 		if @question.save
 			redirect_to admin_questions_path, alert: "Question has been added."
 		else
-			redirect_to admin_questions_path, alert: :unprocessable_entity
+			redirect_to admin_questions_path, alert: @question.errors
 		end
 	end
 	def edit
 		@question = Admin::Question.find(params[:id])
+		authorize @question
 		@answers = @question.answers
 	end
 	def update
-		Admin::Question.update(params[:id],question_params)
+		@question = Admin::Question.find(params[:id])
+		# authorize @question
+		@question.update!(question_params)
 		redirect_to admin_questions_path,  alert: "Question has been updated."
 	end
 	def destroy
-		Admin::Question.destroy(params[:id])
+		@question = Admin::Question.find(params[:id])
+		authorize @question
+		@question.destroy
 		redirect_to admin_questions_path, alert: "Question has been deleted."
 	end
 	def question_params
-		params.require(:admin_question).permit(:question_image, :situation, :description, :category)
-	end 
+		params.require(:admin_question).permit!
+	end
 end

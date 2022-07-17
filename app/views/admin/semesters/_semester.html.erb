@@ -1,0 +1,30 @@
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100" id="<%= dom_id semester %>">
+    <h2>Show Semester</h2>
+    <%= link_to '[ <- back to list ]', admin_semesters_path, class: "back-link" %>
+
+		<ul class="item-list show">
+      <li>
+        <strong>Name:</strong>
+        <%= semester.name %>
+      </li>
+
+      <li>
+        <strong>Start date:</strong>
+        <%= semester.start_date %>
+      </li>
+
+      <li>
+        <strong>End date:</strong>
+        <%= semester.end_date %>
+      </li>
+
+      <li>
+        <strong>Year:</strong>
+        <%= semester.year %>
+      </li>
+
+			<li><%= button_to '[ delete ]', @semester, method: 'delete' %> <%= link_to '[ edit ]', edit_admin_semester_path(@semester.id), class: "edit-link" %></li>
+  </div>
+</main>

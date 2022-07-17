@@ -15,7 +15,7 @@ class QuizController < ApplicationController
 		# @answer = Admin::Answer.new
 		@answers = Admin::Answer.where(question_id: @questions).shuffle
 		question_count = 0
-		
+
 		@questions.each do |each_question|
 		 	selection = false
 	     	@answers.each do |each_answer|

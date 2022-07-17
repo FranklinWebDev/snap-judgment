@@ -1,0 +1,17 @@
+<main class="container public">
+	<div class="container">
+		<div class="row">
+			<center><div class="col-md-4" >
+				<h3>ENTER YOUR EMAIL ADDRESS</h3>
+				<%= form_with model: @session do |form| %>
+					<div class="form-group mt-3">
+						<%= form.label :email, 'Email: '%>
+						<%= form.email_field :email, required: true, class: 'form-control' %>
+						<%= form.password :password, required: true, class: 'form-control' %>
+					</div>
+					<%= form.submit 'Submit', class: 'btn btn-primary btn-dark mt-3 sub-forgot' %>
+				<% end %>
+			</div> </center>
+		</div>
+	</div>
+</main>

@@ -1,0 +1,47 @@
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2><%= @semester.persisted? ? 'Update' : 'New'%> Semester</h2>
+		<%= link_to '[ <- back to list ]', admin_semesters_path, class: 'back-link' %>
+
+    <%= form_for @semester do |form| %>
+      <ul class='item-list'>
+        <% if semester.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(semester.errors.count, "error") %> prohibited this semester from being saved:</h2>
+
+            <ul>
+              <% semester.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <li>
+          <%= form.label :name, style: "display: block" %>
+          <%= form.text_field :name %>
+        </li>
+
+        <li>
+          <%= form.label :start_date, style: "display: block" %>
+          <%= form.date_field :start_date %>
+        </li>
+
+        <li>
+          <%= form.label :end_date, style: "display: block" %>
+          <%= form.date_field :end_date %>
+        </li>
+
+        <li>
+          <%= form.label :year, style: "display: block" %>
+          <%= form.text_field :year %>
+        </li>
+
+        <li>
+          <%= form.submit %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</main>

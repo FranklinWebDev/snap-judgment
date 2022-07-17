@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
 	require 'will_paginate/array'
+	include Pundit::Authorization
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
 	helper_method :current_user
 	helper_method :is_admin_user
 
@@ -13,9 +16,15 @@ class ApplicationController < ActionController::Base
 	end
 	def require_user
 		redirect_to login_path unless current_user
-	end 
+	end
 	def require_is_admin_user
 		redirect_to login_path unless is_admin_user
-	end 
+	end
 
+	private
+
+	def user_not_authorized(exception)
+		flash[:error] = "You are not authorized to perform this task now. Please contact support."
+		redirect_back fallback_location: root_path
+	end
 end

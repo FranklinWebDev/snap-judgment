@@ -1,0 +1,19 @@
+<%= render 'admin/subnav' %>
+<main class="container admin">
+	<div class="row w-100 h-100">
+		<h2>Semesters index</h2>
+		<%= link_to '[ + add new semester ]', new_admin_semester_path, class: "add-link" %>
+
+		<% flash.each do |type, msg| %>
+			<div class="alert alert-info">
+				<%= msg %>
+			</div>
+		<% end %>
+
+		<ul class="item-list">
+			<% @semesters.each do |s| %>
+				<li><%= link_to '[ edit ]', edit_admin_semester_path(s.id), class: "edit-link" %> <%= button_to '[ delete ]', admin_semester_path(s.id), method: 'delete' %> <%= link_to s.name, admin_semester_path(s.id), class: "item-link" %></li>
+			<% end %>
+		</ul>
+	</div>
+</main>
