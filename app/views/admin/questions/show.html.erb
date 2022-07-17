@@ -11,7 +11,7 @@
 			<% @answers.each do |answer|%>
 			<li><h4>Option:</h4> <%= answer.answer_text %>
 				<div class="form-group form-check">
-					<%= radio_button_tag 'answer[is_correct]', 'true', (@quesiton.answer.is_correct == true), :disabled => true, class:"form-check-input" %>
+					<%= radio_button_tag 'answers[is_correct]', 'true', (answer.is_correct == true), :disabled => true, class:"form-check-input" %>
 					<label class="form-check-label">Correct Answer</label>
 				</div>
 			</li>

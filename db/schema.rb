@@ -131,4 +131,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_091506) do
   add_foreign_key "submissions", "questions"
   add_foreign_key "submissions", "quizzes"
   add_foreign_key "submissions", "users"
+  add_foreign_key "users", "courses", name: "course_fkey"
 end
