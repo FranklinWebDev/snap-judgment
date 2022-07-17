@@ -8,6 +8,7 @@ class Admin::QuestionsController < ApplicationController
 		@answers = @question.answers
 	end
 	def new
+		@quiz = Quiz.first
 		@question = Admin::Question.new
 		authorize @question
 		4.times {@question.answers.build}
@@ -33,9 +34,11 @@ class Admin::QuestionsController < ApplicationController
 	end
 	def update
 		@question = Admin::Question.find(params[:id])
-		# authorize @question
-		@question.update!(question_params)
-		redirect_to admin_questions_path,  alert: "Question has been updated."
+		if @question.update(question_params)
+			redirect_to admin_questions_path,  alert: "Question has been updated."
+		else
+			redirect_to admin_questions_path,  alert: @question.errors.full_messages
+		end
 	end
 	def destroy
 		@question = Admin::Question.find(params[:id])
@@ -44,6 +47,6 @@ class Admin::QuestionsController < ApplicationController
 		redirect_to admin_questions_path, alert: "Question has been deleted."
 	end
 	def question_params
-		params.require(:admin_question).permit!
-	end
+		params.require(:admin_question).permit(:question_image, :situation, :description, :category, :quiz_id, answers_attributes: [:id, :answer_text, :is_correct])
+	end 
 end
