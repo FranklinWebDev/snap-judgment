@@ -8,15 +8,18 @@ class Admin::QuestionsController < ApplicationController
 		@answers = @question.answers
 	end
 	def new
+		@quiz = Quiz.first
 		@question = Admin::Question.new
 		4.times {@question.answers.build}
 	end
 	def create
-		@question = Admin::Question.create(question_params)
+		@question = Admin::Question.new(question_params)
 		if @question.save
 			redirect_to admin_questions_path, alert: "Question has been added."
 		else
+			# @question.errors.full_messages
 			redirect_to admin_questions_path, alert: :unprocessable_entity
+			# , alert: @question.errors.full_messages
 		end
 	end
 	def edit
@@ -32,6 +35,6 @@ class Admin::QuestionsController < ApplicationController
 		redirect_to admin_questions_path, alert: "Question has been deleted."
 	end
 	def question_params
-		params.require(:admin_question).permit(:question_image, :situation, :description, :category)
+		params.require(:admin_question).permit(:question_image, :situation, :description, :category, :quiz_id, :answers_attributes => {})
 	end 
 end
