@@ -4,7 +4,7 @@
 		<h2>Edit Question</h2>
 		<%= link_to '[ <- back to list ]', admin_questions_path, class: 'back-link' %>
 
-		<%= form_for @question do |form| %>
+		<%= form_with model: @question do |form| %>
 		<ul class='item-list'>
 			<li><% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key, height: 150) %><% end %>
 				<%= form.label 'Question Photo' %>
@@ -18,17 +18,17 @@
 				<%= form.label 'Description:' %>
 				<%= form.text_area :description %>
 			</li>
-			<% @answers.each do |answer|%>
-			<%= form.fields_for answer do |answer_subform| %>
+			<%= form.fields_for :answers do |answer_subform| %>
 			<li>
 				<%= answer_subform.label 'Option' %>
 				<%= answer_subform.text_field :answer_text %>
 				<div class="form-group form-check">
-					<%= answer_subform.radio_button :is_correct, 'true', :checked => (answer.is_correct == true), class:"form-check-input" %>
-					<label class="form-check-label">Correct Answer</label>
+					
+						<%= answer_subform.radio_button :is_correct, true, class:"form-check-input" %>
+						<label class="form-check-label">Correct Answer</label>
+
 				</div>	
 			</li>
-			<% end %>
 			<% end %>
 
 			<li>

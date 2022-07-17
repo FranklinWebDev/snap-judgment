@@ -27,14 +27,18 @@ class Admin::QuestionsController < ApplicationController
 		@answers = @question.answers
 	end
 	def update
-		Admin::Question.update(params[:id],question_params)
-		redirect_to admin_questions_path,  alert: "Question has been updated."
+		@question = Admin::Question.find(params[:id])
+		if @question.update(question_params)
+			redirect_to admin_questions_path,  alert: "Question has been updated."
+		else
+			redirect_to admin_questions_path,  alert: @question.errors.full_messages
+		end
 	end
 	def destroy
 		Admin::Question.destroy(params[:id])
 		redirect_to admin_questions_path, alert: "Question has been deleted."
 	end
 	def question_params
-		params.require(:admin_question).permit(:question_image, :situation, :description, :category, :quiz_id, :answers_attributes => {})
+		params.require(:admin_question).permit(:question_image, :situation, :description, :category, :quiz_id, answers_attributes: [:id, :answer_text, :is_correct])
 	end 
 end
