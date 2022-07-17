@@ -14,12 +14,13 @@ class Admin::QuestionsController < ApplicationController
 		4.times {@question.answers.build}
 	end
 	def create
-		@question = Admin::Question.create(
-			situation: params[:admin_question][:situation],
-			description: params[:admin_question][:description],
-			category: params[:admin_question][:category],
-			quiz: Quiz.first
-		)
+		# @question = Admin::Question.create(
+		# 	situation: params[:admin_question][:situation],
+		# 	description: params[:admin_question][:description],
+		# 	category: params[:admin_question][:category],
+		# 	quiz: Quiz.first
+		# )
+		@question = Admin::Question.new(question_params)
 		authorize @question
 		if @question.save
 			redirect_to admin_questions_path, alert: "Question has been added."
