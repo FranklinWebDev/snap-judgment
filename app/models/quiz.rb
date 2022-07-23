@@ -5,6 +5,6 @@ class Quiz < ApplicationRecord
 
     def next
 		  self.where("id > ?", id).limit(1).first
-	  end
+	end
 
-end
+end 

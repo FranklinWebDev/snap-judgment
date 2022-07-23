@@ -1,3 +1,3 @@
 class Submission < ApplicationRecord
-   	belongs_to :results
+   	# belongs_to :result
 end
