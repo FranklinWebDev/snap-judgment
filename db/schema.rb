@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_091506) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_20_153321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,9 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_091506) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "quiz_id", null: false
-    t.bigint "user_id", null: false
     t.index ["quiz_id"], name: "index_results_on_quiz_id"
-    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "semesters", force: :cascade do |t|
@@ -97,28 +95,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_091506) do
     t.boolean "is_correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
     t.bigint "quiz_id", null: false
     t.bigint "question_id", null: false
     t.bigint "answer_id", null: false
     t.index ["answer_id"], name: "index_submissions_on_answer_id"
     t.index ["question_id"], name: "index_submissions_on_question_id"
     t.index ["quiz_id"], name: "index_submissions_on_quiz_id"
-    t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "password_digest", null: false
+    t.string "email", default: "", null: false
+    t.string "first_name", default: ""
+    t.string "last_name", default: ""
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.integer "course_id"
     t.boolean "is_admin"
     t.string "session_questions"
-    t.datetime "confirmed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -126,10 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_091506) do
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "results", "quizzes"
-  add_foreign_key "results", "users"
   add_foreign_key "submissions", "answers"
   add_foreign_key "submissions", "questions"
   add_foreign_key "submissions", "quizzes"
-  add_foreign_key "submissions", "users"
-  add_foreign_key "users", "courses", name: "course_fkey"
 end

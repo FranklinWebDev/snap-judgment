@@ -138,15 +138,16 @@ Admin::Course.create!([
 ])
 p "Created #{Admin::Course.count} courses"
 
-Admin::User.destroy_all
-Admin::User.create!([
+User.destroy_all
+User.create!([
   {
     "email": "admin@email.com",
-    "password": "admin",
+    "password": "admin123",
     "first_name": "Admin",
     "last_name": "Admino",
     "course_id": 1,
-    "is_admin": 1
+    "is_admin": 1,
+    "confirmed_at": Time.now
   },
   {
     "email": "student@email.com",
@@ -154,7 +155,14 @@ Admin::User.create!([
     "first_name": "Student",
     "last_name": "Studento",
     "course_id": 1,
-    "is_admin": 0
+    "is_admin": 0,
+    "confirmed_at": Time.now
   }
 ])
-p "Created #{Admin::User.count} users"
+p "Created #{User.count} users"
+
+
+Admin::Semester.destroy_all
+Admin::Semester.create(name: 'Summer', start_date: Date.new(Date.today.year, 5, 10), end_date: Date.new(Date.today.year, 7, 1), year: Date.today.year)
+Admin::Semester.create(name: 'Autum', start_date: Date.new(Date.today.year, 9, 14), end_date: Date.new(Date.today.year, 12, 31), year: Date.today.year)
+Admin::Semester.create(name: 'Spring', start_date: Date.new(Date.today.year, 1, 14), end_date: Date.new(Date.today.year, 5, 5), year: Date.today.year)

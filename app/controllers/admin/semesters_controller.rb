@@ -8,32 +8,32 @@ class Admin::SemestersController < ApplicationController
   end
 
   # GET /semesters/1 or /semesters/1.json
-  def show
-  end
+  # def show
+  # end
 
-  # GET /semesters/new
-  def new
-    @semester = Admin::Semester.new
-  end
+  # # GET /semesters/new
+  # def new
+  #   @semester = Admin::Semester.new
+  # end
 
   # GET /semesters/1/edit
   def edit
   end
 
   # POST /semesters or /semesters.json
-  def create
-    @semester = Admin::Semester.new(semester_params)
+  # def create
+  #   @semester = Admin::Semester.new(semester_params)
 
-    respond_to do |format|
-      if @semester.save
-        format.html { redirect_to admin_semesters_path, alert: "Semester was successfully created." }
-        format.json { render :show, status: :created, location: @semester }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @semester.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @semester.save
+  #       format.html { redirect_to admin_semesters_path, alert: "Semester was successfully created." }
+  #       format.json { render :show, status: :created, location: @semester }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @semester.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /semesters/1 or /semesters/1.json
   def update
@@ -49,14 +49,14 @@ class Admin::SemestersController < ApplicationController
   end
 
   # DELETE /semesters/1 or /semesters/1.json
-  def destroy
-    @semester.destroy
+  # def destroy
+  #   @semester.destroy
 
-    respond_to do |format|
-      format.html { redirect_to admin_semesters_path, alert: "Semester was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to admin_semesters_path, alert: "Semester was successfully destroyed." }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

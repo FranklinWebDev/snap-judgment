@@ -1,0 +1,22 @@
+<main class="container admin">
+	<div class="row w-100 h-100">
+    <h2>Resend confirmation instructions</h2>
+
+    <%= form_for(resource, as: resource_name, data: { turbo: false }, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <ul class="item-list">
+        <li>
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        </li>
+
+        <li class="actions">
+          <%= f.submit "Resend confirmation instructions" %>
+        </li>
+      </ul>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</main>

@@ -27,22 +27,25 @@ class Admin::QuestionPolicy < ApplicationPolicy
   end
 
   def summer(date)
-    start_date = SUMMER.start_date
-    end_date = SUMMER.end_date
+    @summer ||= Admin::Semester.where(name: 'Summer').first
+    start_date = @summer.start_date
+    end_date = @summer.end_date
 
     date <= end_date && date >= start_date
   end
 
   def spring(date)
-    start_date = SPRING.start_date
-    end_date = SPRING.end_date
+    @spring ||= Admin::Semester.where(name: 'Spring').first
+    start_date = @spring.start_date
+    end_date = @spring.end_date
 
     date <= end_date && date >= start_date
   end
 
   def autum(date)
-    start_date = AUTUM.start_date
-    end_date = AUTUM.end_date
+    @autum ||= Admin::Semester.where(name: 'Autum').first
+    start_date = @autum.start_date
+    end_date = @autum.end_date
 
     date <= end_date && date >= start_date
   end

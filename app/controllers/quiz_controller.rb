@@ -2,7 +2,7 @@ class QuizController < ApplicationController
 	before_action :require_user
 	def index
 		@questions = Admin::Question.all
-		redirect_to action: "show", id: 1
+		redirect_to action: "show", id: Admin::Question.first.id
 	end
 
 	def show

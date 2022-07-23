@@ -4,7 +4,7 @@
 		<h2>Edit User</h2>
 		<%= link_to '[ <- back to list ]', admin_users_path(course_id: @user.course_id), class: "back-link" %>
 
-		<%= form_with model: @user do |form| %>
+	<%= form_for(@user, as: 'admin_user', url: admin_user_path, html: { method: :put }) do |form| %>
 		<ul class="item-list">
 			<li><%= form.label :course_id,'Class: ' %>
 				<%= form.select(:course_id, options_from_collection_for_select(@courses, :id, :name, @user.course_id)) %>

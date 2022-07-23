@@ -8,7 +8,7 @@
 			<li><h4>Email:</h4> <%= @user.email %></li>
 			<li><h4>Class:</h4> <%= Admin::Course.find(@user.course_id).name %></li>
 			<li><h4>Admin?</h4> <%= @user.is_admin ? 'Yes' : 'No' %></li>
-			<li><%= link_to '[ edit ]', edit_admin_user_path(@user.id), class: "edit-link" %>
+			<li><%= link_to '[ edit ]', edit_user_registration_path(@user.id), class: "edit-link" %>
 				<% if @user.id != session[:user_id] %>
 					<%= button_to '[ delete ]', @user, method: 'delete' %>
 				<% else %>

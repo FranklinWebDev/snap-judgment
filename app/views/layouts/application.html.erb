@@ -1,139 +1,144 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Judgment | Snap Judgement</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<%= csrf_meta_tags %>
-		<%= csp_meta_tag %>
-		<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-		<%= javascript_importmap_tags %>
-		<!-- Bootstrap CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<!-- google font -->
-		<link rel="preconnect" href="https://fonts.googleapis.com"> 
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-	</head>
+  <head>
+    <title>Judgment | Snap Judgement</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  </head>
 
-	<body>
-		<nav class="navbar navbar-expand-md navbar-dark">
-			<div class="container">
-				<a class="navbar-brand" href="/">Snap Judgement</a>
-				<button class="navbar-toggler btn btn-dark d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav mx-auto mb-2 mb-md-0">
-						<li class="nav-item">
-							<%= link_to 'Purpose', purpose_index_path, class: 'nav-link' %>
-						</li>
-						<li class="nav-item">
-							<%= link_to 'Our Nursing Program', about_index_path, class: 'nav-link' %>
-						</li>
-						<li class="nav-item">
-							<%= link_to 'You be the Judge', quiz_index_path, class: 'nav-link' %>
-						</li>
-					</ul>
-					<div class="d-flex">
-						<ul class="navbar-nav me-auto mb-2 mb-md-0">
-							<% if is_admin_user %>
-							<li>
-								<%= link_to 'Admin', admin_path, class: 'nav-link' %>
-							</li>
-							<% end %>
-							<li class="nav-item">
-								<% if current_user %>
-									<%= button_to "Log out", logout_path, method: :delete, class: 'nav-link' %>
-								<% else %>
-									<%= link_to 'Login', login_path, class: 'nav-link' %>
-								<% end %>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</nav>
-	
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">Snap Judgement</a>
+        <button class="navbar-toggler btn btn-dark d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mx-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <%= link_to 'Purpose', purpose_index_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Our Nursing Program', about_index_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'You be the Judge', quiz_index_path, class: 'nav-link' %>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <% if is_admin_user %>
+              <li>
+                <%= link_to 'Admin', admin_users_path, class: 'nav-link' %>
+              </li>
+              <% end %>
+              <% if current_user %>
+                <li class="nav-item">
+                  <%= button_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+                <% else %>
+                  <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Sign Up', new_registration_path(:user), class: 'nav-link' %>
+                </li>
+              <% end %>
 
-		<%= yield %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+    <div class="container">
+      <%= render 'devise/shared/flash_errors' %>
+    </div>
 
 <footer class="py-3 footer">
-	<div class="container">
-	<div class="row align-items-center">
-		<%# Franklin University Logo %>
-		<div class="col-md-4">
-			<a href="https://www.franklin.edu" class="">
-			<img src="https://www.franklin.edu/themes/fu/css/img/franklin_logo_white.svg" alt="franklin university logo" class="w-50 d-flex mb-2 mx-auto mx-md-0">
-			</a>
-			<p class="text-muted text-center text-md-start pt-1">© 2022 Franklin University</p>
-		</div>
-		<div class="col-md-4 d-none d-md-block"></div>
-		<%# Designed and Devloped %>
-		<div class="col-md-4 d-none d-md-block">
-			<div class="d-flex align-items-center">
-				<p class="text-muted"><small>Designed and Developed By</small></p>
-			</div>
-			<a class="footer-link" href="https://www.franklin.edu/degrees/bachelors/interactive-media-design">
-			<%# Interactive Media Design Icon from Franklin Website %>
-			<div class="d-flex align-items-center mb-2"><!--?xml version="1.0" encoding="UTF-8"?-->
-				<svg class="me-3" width="20px" height="20px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-					<title>program_icon/white/game_console</title>
-					<desc>Created with Sketch.</desc>
-					<defs></defs>
-					<g id="Assets---Contextual-Graphics-&amp;-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-						<g id="program_icon/white/game_console">
-							<g id="0_Trns-Bkg">
-								<rect id="Trns-Bkg" x="0" y="0" width="30" height="30"></rect>
-							</g>
-							<path d="M10,19.48 L10,20 L12.2071068,20 L13,20.7928932 L13,23.2071068 L12.2071068,24 L10,24 L10,26.2071068 L9.20710678,27 L6.79289322,27 L6,26.2071068 L6,24 L3.79289322,24 L3,23.2071068 L3,20.7928932 L3.79289322,20 L6,20 L6,17.7928932 L6.79289322,17 L9.20710678,17 L10,17.7928932 L10,18 C10,18.3333333 10,18.4 10,19.48 Z M8.91789322,18.125 L7.20710678,18 L7,18.2071068 L7,21 L4.20710678,21 L4,21.2071068 L4,22.7928932 L4.20710678,23 L7,23 L7,25.7928932 L7.20710678,26 L8.79289322,26 L9,25.7928932 L9,23 L11.7928932,23 L12,22.7928932 L12,21.2071068 L11.7928932,21 L9,21 L9,20.5 C9,18.8076856 9,18.4900567 9,18.2071068 C8.97781579,18.1849226 8.9510543,18.1581611 8.91789322,18.125 Z" id="Stroke-1" fill="#ffffff8c" fill-rule="nonzero"></path>
-							<path d="M18.5,22 C18.5,22.828777 17.8276978,23.5 16.9989209,23.5 C16.171223,23.5 15.5,22.828777 15.5,22 C15.5,21.171223 16.171223,20.5 16.9989209,20.5 C17.8276978,20.5 18.5,21.171223 18.5,22" id="Fill-5" fill="#ffffff8c"></path>
-							<path d="M22.5,22 C22.5,22.828777 21.8276978,23.5 20.9989209,23.5 C20.171223,23.5 19.5,22.828777 19.5,22 C19.5,21.171223 20.171223,20.5 20.9989209,20.5 C21.8276978,20.5 22.5,21.171223 22.5,22" id="Fill-5" fill="#ffffff8c"></path>
-							<path d="M26.5,22 C26.5,22.828777 25.8276978,23.5 24.9989209,23.5 C24.171223,23.5 23.5,22.828777 23.5,22 C23.5,21.171223 24.171223,20.5 24.9989209,20.5 C25.8276978,20.5 26.5,21.171223 26.5,22" id="Fill-5" fill="#ffffff8c"></path>
-							<path d="M29,26.5 L29,3.5 C29,2.27614237 27.7238576,1 26.5,1 L3.5,1 C2.27614237,1 1,2.27614237 1,3.5 L1,26.5 C1,27.7238576 2.27614237,29 3.5,29 L26.5,29 C27.7238576,29 29,27.7238576 29,26.5 Z M30,26.5 C30,28.2761424 28.2761424,30 26.5,30 L3.5,30 C1.72385763,30 0,28.2761424 0,26.5 L0,3.5 C0,1.72385763 1.72385763,0 3.5,0 L26.5,0 C28.2761424,0 30,1.72385763 30,3.5 L30,26.5 Z" id="Stroke-9" fill="#ffffff8c" fill-rule="nonzero"></path>
-							<path d="M3,15 L3,4 L27,4 L27,15 L3,15 Z M26,14 L26,5 L4,5 L4,14 L26,14 Z" id="Stroke-11" fill="#ffffff8c" fill-rule="nonzero"></path>
-						</g>
-					</g>
-				</svg>
-				<p class="m-0">Interactive Media Design</p>
-			</div>
-			</a>
-			<a class="footer-link" href="https://www.franklin.edu/degrees/bachelors/web-development">
-			<%# Web Development Icon from Franklin Website %>
-			<div class="d-flex align-items-center mb-2"><!--?xml version="1.0" encoding="UTF-8"?-->
-				<svg class="me-3" width="20px" height="20px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-					<title>program_icon/white/browser_code</title>
-					<desc>Created with Sketch.</desc>
-					<defs></defs>
-					<g id="Assets---Contextual-Graphics-&amp;-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-						<g id="program_icon/white/browser_code">
-							<g id="0_Trns-Bkg">
-								<rect id="Trns-Bkg" x="0" y="0" width="30" height="30"></rect>
-							</g>
-							<path d="M29,26.5 L29,3.5 C29,2.27614237 27.7238576,1 26.5,1 L3.5,1 C2.27614237,1 1,2.27614237 1,3.5 L1,26.5 C1,27.7238576 2.27614237,29 3.5,29 L26.5,29 C27.7238576,29 29,27.7238576 29,26.5 Z M30,26.5 C30,28.2761424 28.2761424,30 26.5,30 L3.5,30 C1.72385763,30 0,28.2761424 0,26.5 L0,3.5 C0,1.72385763 1.72385763,0 3.5,0 L26.5,0 C28.2761424,0 30,1.72385763 30,3.5 L30,26.5 Z" id="Stroke-1" fill="#ffffff8c" fill-rule="nonzero"></path>
-							<polygon id="Stroke-3" fill="#ffffff8c" fill-rule="nonzero" points="1 10 29 10 29 9 1 9"></polygon>
-							<polygon id="Stroke-5" fill="#ffffff8c" fill-rule="nonzero" points="14 5 27 5 27 4 14 4"></polygon>
-							<rect id="Rectangle" fill="#ffffff8c" x="4" y="4" width="1" height="1"></rect>
-							<rect id="Rectangle" fill="#ffffff8c" x="7" y="4" width="1" height="1"></rect>
-							<rect id="Rectangle" fill="#ffffff8c" x="10" y="4" width="1" height="1"></rect>
-							<polygon id="Path-53" fill="#ffffff8c" fill-rule="nonzero" points="17.0384615 12.8076923 12.0384615 24.8076923 12.9615385 25.1923077 17.9615385 13.1923077"></polygon>
-							<polygon id="Path-54" fill="#ffffff8c" fill-rule="nonzero" points="19.2629501 22.0597645 19.7370499 22.9402355 27.0546302 19 19.7370499 15.0597645 19.2629501 15.9402355 24.9453698 19"></polygon>
-							<polygon id="Path-55" fill="#ffffff8c" fill-rule="nonzero" points="10.7370499 15.9402355 10.2629501 15.0597645 2.94536978 19 10.2629501 22.9402355 10.7370499 22.0597645 5.05463022 19"></polygon>
-						</g>
-					</g>
-				</svg>
-				<p class="m-0">Web Development</p>
-			</div>
-			</a>
-		</div>
-	</div>
-	</div>
+  <div class="container">
+  <div class="row align-items-center">
+    <%# Franklin University Logo %>
+    <div class="col-md-4">
+      <a href="https://www.franklin.edu" class="">
+      <img src="https://www.franklin.edu/themes/fu/css/img/franklin_logo_white.svg" alt="franklin university logo" class="w-50 d-flex mb-2 mx-auto mx-md-0">
+      </a>
+      <p class="text-muted text-center text-md-start pt-1">© 2022 Franklin University</p>
+    </div>
+    <div class="col-md-4 d-none d-md-block"></div>
+    <%# Designed and Devloped %>
+    <div class="col-md-4 d-none d-md-block">
+      <div class="d-flex align-items-center">
+        <p class="text-muted"><small>Designed and Developed By</small></p>
+      </div>
+      <a class="footer-link" href="https://www.franklin.edu/degrees/bachelors/interactive-media-design">
+      <%# Interactive Media Design Icon from Franklin Website %>
+      <div class="d-flex align-items-center mb-2"><!--?xml version="1.0" encoding="UTF-8"?-->
+        <svg class="me-3" width="20px" height="20px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+          <title>program_icon/white/game_console</title>
+          <desc>Created with Sketch.</desc>
+          <defs></defs>
+          <g id="Assets---Contextual-Graphics-&amp;-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="program_icon/white/game_console">
+              <g id="0_Trns-Bkg">
+                <rect id="Trns-Bkg" x="0" y="0" width="30" height="30"></rect>
+              </g>
+              <path d="M10,19.48 L10,20 L12.2071068,20 L13,20.7928932 L13,23.2071068 L12.2071068,24 L10,24 L10,26.2071068 L9.20710678,27 L6.79289322,27 L6,26.2071068 L6,24 L3.79289322,24 L3,23.2071068 L3,20.7928932 L3.79289322,20 L6,20 L6,17.7928932 L6.79289322,17 L9.20710678,17 L10,17.7928932 L10,18 C10,18.3333333 10,18.4 10,19.48 Z M8.91789322,18.125 L7.20710678,18 L7,18.2071068 L7,21 L4.20710678,21 L4,21.2071068 L4,22.7928932 L4.20710678,23 L7,23 L7,25.7928932 L7.20710678,26 L8.79289322,26 L9,25.7928932 L9,23 L11.7928932,23 L12,22.7928932 L12,21.2071068 L11.7928932,21 L9,21 L9,20.5 C9,18.8076856 9,18.4900567 9,18.2071068 C8.97781579,18.1849226 8.9510543,18.1581611 8.91789322,18.125 Z" id="Stroke-1" fill="#ffffff8c" fill-rule="nonzero"></path>
+              <path d="M18.5,22 C18.5,22.828777 17.8276978,23.5 16.9989209,23.5 C16.171223,23.5 15.5,22.828777 15.5,22 C15.5,21.171223 16.171223,20.5 16.9989209,20.5 C17.8276978,20.5 18.5,21.171223 18.5,22" id="Fill-5" fill="#ffffff8c"></path>
+              <path d="M22.5,22 C22.5,22.828777 21.8276978,23.5 20.9989209,23.5 C20.171223,23.5 19.5,22.828777 19.5,22 C19.5,21.171223 20.171223,20.5 20.9989209,20.5 C21.8276978,20.5 22.5,21.171223 22.5,22" id="Fill-5" fill="#ffffff8c"></path>
+              <path d="M26.5,22 C26.5,22.828777 25.8276978,23.5 24.9989209,23.5 C24.171223,23.5 23.5,22.828777 23.5,22 C23.5,21.171223 24.171223,20.5 24.9989209,20.5 C25.8276978,20.5 26.5,21.171223 26.5,22" id="Fill-5" fill="#ffffff8c"></path>
+              <path d="M29,26.5 L29,3.5 C29,2.27614237 27.7238576,1 26.5,1 L3.5,1 C2.27614237,1 1,2.27614237 1,3.5 L1,26.5 C1,27.7238576 2.27614237,29 3.5,29 L26.5,29 C27.7238576,29 29,27.7238576 29,26.5 Z M30,26.5 C30,28.2761424 28.2761424,30 26.5,30 L3.5,30 C1.72385763,30 0,28.2761424 0,26.5 L0,3.5 C0,1.72385763 1.72385763,0 3.5,0 L26.5,0 C28.2761424,0 30,1.72385763 30,3.5 L30,26.5 Z" id="Stroke-9" fill="#ffffff8c" fill-rule="nonzero"></path>
+              <path d="M3,15 L3,4 L27,4 L27,15 L3,15 Z M26,14 L26,5 L4,5 L4,14 L26,14 Z" id="Stroke-11" fill="#ffffff8c" fill-rule="nonzero"></path>
+            </g>
+          </g>
+        </svg>
+        <p class="m-0">Interactive Media Design</p>
+      </div>
+      </a>
+      <a class="footer-link" href="https://www.franklin.edu/degrees/bachelors/web-development">
+      <%# Web Development Icon from Franklin Website %>
+      <div class="d-flex align-items-center mb-2"><!--?xml version="1.0" encoding="UTF-8"?-->
+        <svg class="me-3" width="20px" height="20px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+          <title>program_icon/white/browser_code</title>
+          <desc>Created with Sketch.</desc>
+          <defs></defs>
+          <g id="Assets---Contextual-Graphics-&amp;-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="program_icon/white/browser_code">
+              <g id="0_Trns-Bkg">
+                <rect id="Trns-Bkg" x="0" y="0" width="30" height="30"></rect>
+              </g>
+              <path d="M29,26.5 L29,3.5 C29,2.27614237 27.7238576,1 26.5,1 L3.5,1 C2.27614237,1 1,2.27614237 1,3.5 L1,26.5 C1,27.7238576 2.27614237,29 3.5,29 L26.5,29 C27.7238576,29 29,27.7238576 29,26.5 Z M30,26.5 C30,28.2761424 28.2761424,30 26.5,30 L3.5,30 C1.72385763,30 0,28.2761424 0,26.5 L0,3.5 C0,1.72385763 1.72385763,0 3.5,0 L26.5,0 C28.2761424,0 30,1.72385763 30,3.5 L30,26.5 Z" id="Stroke-1" fill="#ffffff8c" fill-rule="nonzero"></path>
+              <polygon id="Stroke-3" fill="#ffffff8c" fill-rule="nonzero" points="1 10 29 10 29 9 1 9"></polygon>
+              <polygon id="Stroke-5" fill="#ffffff8c" fill-rule="nonzero" points="14 5 27 5 27 4 14 4"></polygon>
+              <rect id="Rectangle" fill="#ffffff8c" x="4" y="4" width="1" height="1"></rect>
+              <rect id="Rectangle" fill="#ffffff8c" x="7" y="4" width="1" height="1"></rect>
+              <rect id="Rectangle" fill="#ffffff8c" x="10" y="4" width="1" height="1"></rect>
+              <polygon id="Path-53" fill="#ffffff8c" fill-rule="nonzero" points="17.0384615 12.8076923 12.0384615 24.8076923 12.9615385 25.1923077 17.9615385 13.1923077"></polygon>
+              <polygon id="Path-54" fill="#ffffff8c" fill-rule="nonzero" points="19.2629501 22.0597645 19.7370499 22.9402355 27.0546302 19 19.7370499 15.0597645 19.2629501 15.9402355 24.9453698 19"></polygon>
+              <polygon id="Path-55" fill="#ffffff8c" fill-rule="nonzero" points="10.7370499 15.9402355 10.2629501 15.0597645 2.94536978 19 10.2629501 22.9402355 10.7370499 22.0597645 5.05463022 19"></polygon>
+            </g>
+          </g>
+        </svg>
+        <p class="m-0">Web Development</p>
+      </div>
+      </a>
+    </div>
+  </div>
+  </div>
 </footer>
 
 
-		<!-- Bootstrap Bundle with Popper -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-	</body>
+  </body>
 </html>

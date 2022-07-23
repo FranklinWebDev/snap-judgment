@@ -11,7 +11,7 @@ class ForgotPasswordController < ApplicationController
     @user.update(password: params[:password], confirmed_at: Time.now)
 
     if @user.save
-    redirect_to login_path, alert: 'Your password has been changed successfully.'
+    redirect_to new_user_session_path, alert: 'Your password has been changed successfully.'
     else
     redirect_to root_path
     end

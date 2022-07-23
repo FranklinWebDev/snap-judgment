@@ -4,7 +4,7 @@
 		<h2>New Users</h2>
 		<%= link_to '[ <- back to list ]', admin_users_path, class: "back-link" %>
 
-		<%= form_with model: @user do |formCSV| %>
+		<%= form_for(@user, as: 'admin_user', url: admin_users_path, html: { method: :post }) do |formCSV| %>
 			<%= formCSV.hidden_field :hasCSV, value: true %>
 			<ul class="item-list">
 				<li><%= formCSV.label :course_id,'Class: ' %>
@@ -18,7 +18,7 @@
 		<% end %>
 
 		<p>OR…</p>
-		<%= form_with model: @user do |form| %>
+		<%= form_for(@user, as: 'admin_user', url: admin_users_path, html: { method: :post }) do |form| %>
 			<%= render partial: "shared/form_errors", locals: { object: form.object } %>
 			<%= form.hidden_field :hasCSV, value: false %>
 			<ul class="item-list">
@@ -36,6 +36,9 @@
 				</li>
 				<li><%= form.label :password, 'Password: ' %>
 					<%= form.password_field :password, required: true %>
+				</li>
+				<li><%= form.label :confirm_password, 'Confirm password: ' %>
+					<%= form.password_field :confirm_password, required: true %>
 				</li>
 				<li><%= form.label :is_admin, 'Admin? ' %>
 					<%= form.select(:is_admin, options_for_select([['No', false],['Yes', true]])) %>
