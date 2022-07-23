@@ -99,11 +99,11 @@ Rails.application.configure do
     address: 'smtp.sendgrid.net',
     port: 587,
     user_name: 'apikey',
-    password: ENV['SENDGRID_API_KEY'],
-    domain: ENV['HOST'],
+    password: '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',
+    domain: 'snap-judgement.herokuapp.com',
     authentication: :plain,
     enable_starttls_auto: true
   }
 
-  Rails.application.routes.default_url_options[:host] = "snap-judgement.herokuapp.com"
+  # Rails.application.routes.default_url_options[:host] = "snap-judgement.herokuapp.com"
 end
