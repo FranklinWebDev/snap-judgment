@@ -12,7 +12,7 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/new
   def new
-    @submission = Submission.new
+    # @submission = Submission.new
   end
 
   # GET /submissions/1/edit
@@ -21,12 +21,18 @@ class SubmissionsController < ApplicationController
 
   # POST /submissions or /submissions.json
   def create
+    # @question = Admin::Question.find(params[:id])
+    @question_last = Admin::Question.select(:id).last
     @submission = Submission.new(submission_params)
-
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to submission_url(@submission), notice: "Submission was successfully created." }
-        format.json { render :show, status: :created, location: @submission }
+        if @submission.question_id != @question_last.id
+          format.html { redirect_to quiz_path(@submission.question_id + 1) }
+          format.json { render :show, status: :created, location: @submission }
+        else
+          format.html { redirect_to results_url}
+          format.json { render :show, status: :created, location: @submission }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @submission.errors, status: :unprocessable_entity }
@@ -65,6 +71,6 @@ class SubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def submission_params
-      params.require(:submission).permit(:is_correct)
+      params.require(:submission).permit(:answer, :question_id, :is_correct)
     end
 end
