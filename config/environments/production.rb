@@ -100,7 +100,7 @@ Rails.application.configure do
     port: 587,
     user_name: 'apikey',
     password: 'SG.LD1gsK5QQjus1vbSPumWQg.jVjoOGZVKKm4s81gIToco_z_GZGvuHg0Oo1H_TUJw48',
-    domain: 'snap-judgement.herokuapp.com',
+    domain: 'wessam@sale4deals.com',
     authentication: :plain,
     enable_starttls_auto: true
   }
