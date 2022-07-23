@@ -48,6 +48,7 @@ class Admin::QuestionsController < ApplicationController
 		redirect_to admin_questions_path, alert: "Question has been deleted."
 	end
 	def question_params
-		params.require(:admin_question).permit(:question_image, :situation, :description, :category, :quiz_id, answers_attributes: [:id, :answer_text, :is_correct])
+		params.require(:admin_question).permit(:question_image, :situation, :description, :category, :quiz_id, answers_attributes: [:id, :answer_text, :is_correct, :question_id])
+		
 	end 
 end

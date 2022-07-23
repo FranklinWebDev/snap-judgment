@@ -23,7 +23,7 @@
 			<li>
 				<%= answer_subform.label 'Option' %>
 				<%= answer_subform.text_field :answer_text %>
-				<%= radio_button_tag :is_correct, 'true', class:"form-check-input" %>
+				<%= answer_subform.radio_button :is_correct, class:"form-check-input" %>
 				<label class="form-check-label">Correct Answer</label>
 			</li>
 			<% end %>
