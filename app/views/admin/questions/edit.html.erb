@@ -18,14 +18,14 @@
 				<%= form.label 'Description:' %>
 				<%= form.text_area :description %>
 			</li>
-			<%= form.fields_for :answers do |answer_subform| %>
+			<%= form.fields_for :answers, @answers.each do |answer_subform| %>
 			<li>
 				<%= answer_subform.label 'Option' %>
 				<%= answer_subform.text_field :answer_text %>
 				<div class="form-group form-check">
 					
-						<%= answer_subform.radio_button :is_correct, true, class:"form-check-input" %>
-						<label class="form-check-label">Correct Answer</label>
+					<%= radio_button_tag 'answers[is_correct]', answer_subform.object.id, answer_subform.object.is_correct?%>
+					<label class="form-check-label">Correct Answer</label>
 
 				</div>	
 			</li>

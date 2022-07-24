@@ -14,19 +14,22 @@ class QuizController < ApplicationController
 		@total_score = 100
 		# @answer = Admin::Answer.new
 		@answers = Admin::Answer.where(question_id: @questions).shuffle
-		question_count = 0
+		@question_count = 0
 
 		@questions.each do |each_question|
-		 	selection = false
+		 	@selection = false
 	     	@answers.each do |each_answer|
 				if each_answer.is_correct == true
-					selection = true
+					@selection = true
 				end
 			end
-			if selection == true
-				question_count+=1
+			if @selection == true
+				@question_count+=1
 			end
 		end
+
+		@submission = Submission.new
+
 	end
 	# def index
 		# if session[:current_question] <= 9

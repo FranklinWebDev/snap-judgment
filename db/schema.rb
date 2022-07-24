@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2022_07_20_153321) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2022_07_23_151720) do
+>>>>>>> results
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_153321) do
 
   create_table "answers", force: :cascade do |t|
     t.string "answer_text"
-    t.boolean "is_correct"
+    t.boolean "is_correct", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "question_id", null: false
@@ -92,15 +96,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_153321) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.boolean "is_correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.bigint "quiz_id", null: false
+=======
+>>>>>>> results
     t.bigint "question_id", null: false
-    t.bigint "answer_id", null: false
-    t.index ["answer_id"], name: "index_submissions_on_answer_id"
+    t.string "answer"
+    t.boolean "is_correct"
     t.index ["question_id"], name: "index_submissions_on_question_id"
+<<<<<<< HEAD
     t.index ["quiz_id"], name: "index_submissions_on_quiz_id"
+=======
+>>>>>>> results
   end
 
   create_table "users", force: :cascade do |t|
@@ -129,7 +138,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_153321) do
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "results", "quizzes"
+<<<<<<< HEAD
   add_foreign_key "submissions", "answers"
   add_foreign_key "submissions", "questions"
   add_foreign_key "submissions", "quizzes"
+=======
+  add_foreign_key "results", "users"
+  add_foreign_key "submissions", "questions"
+  add_foreign_key "users", "courses", name: "course_fkey"
+>>>>>>> results
 end

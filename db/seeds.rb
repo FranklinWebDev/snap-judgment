@@ -145,6 +145,7 @@ User.create!([
     "password": "admin123",
     "first_name": "Admin",
     "last_name": "Admino",
+    :confirmed_at => Time.now(),
     "course_id": 1,
     "is_admin": 1,
     "confirmed_at": Time.now
@@ -154,6 +155,7 @@ User.create!([
     "password": "student",
     "first_name": "Student",
     "last_name": "Studento",
+    :confirmed_at => Time.now(),
     "course_id": 1,
     "is_admin": 0,
     "confirmed_at": Time.now

@@ -105,14 +105,18 @@ button.btn.btn-dark {
     background-color: #00274D;
 }
 
-button.btn.btn-primary {
+button.btn.btn-primary, label.btn.btn-primary {
     background-color: #AFC5DB;
 }
-button.btn-primary:hover {
-    background-color: #9eb4cb;
+button.btn-primary:hover, label.btn.btn-primary:hover {
+    background-color: #9eb4cb; 
 }
 
-#Options button {
+input[type="radio"]:checked+label.btn-primary {
+	background-color: #9eb4cb;
+}
+
+#Options button, #Options label {
     width: 100%;
     min-height: 3rem;
     border-radius: 1.5rem;
