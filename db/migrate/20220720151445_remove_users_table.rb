@@ -1,8 +1,8 @@
 class RemoveUsersTable < ActiveRecord::Migration[7.0]
 
   def up
-    remove_column :results, :user_id, if_exists: true
-    # remove_column :submissions, :user_id, if_exists: true
+    remove_reference :results, :user, foreign_key: false, index: false, if_exists: true
+    remove_reference :submissions, :user, foreign_key: false, index: false, if_exists: true
 
 
     drop_table :users do |t|
@@ -30,7 +30,7 @@ class RemoveUsersTable < ActiveRecord::Migration[7.0]
 
       add_index :users, :email, unique: true
 
-      add_column :results, :user_id, :integer
-      add_column :submissions, :user_id, :integer
+      add_reference :results, :user, foreign_key: true, index: true
+      add_reference :submissions, :user, foreign_key: true, index: true
     end
 end
