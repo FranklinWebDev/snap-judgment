@@ -7,6 +7,7 @@ class QuizController < ApplicationController
 	end
 
 	def show
+		@user = current_user
 		@questions = Admin::Question.all
 		# @questions = Admin::Question.order("RANDOM()").ids.to_a
 		@question = Admin::Question.find(params[:id])

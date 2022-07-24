@@ -12,10 +12,15 @@
         <div id="Options">
             <% @answers.each do |each_answer| %>
                 <% if each_answer.question_id == @question.id %><!--Display options of this question-->
-                    <%= form.radio_button :answer, each_answer.answer_text, class: 'btn-check', 'data-bs-toggle': 'modal', 'data-bs-target': '#AnswerModal', 'data-option': each_answer.is_correct, 'autocomplete': 'off' %>
+                    <%= form.radio_button :answer, each_answer.answer_text, class: 'btn-check', 'data-bs-toggle': 'modal', 'data-bs-target': '#AnswerModal', 'data-option': each_answer.is_correct, 'autocomplete': 'off', onClick: "evaluateAnswer(this.getAttribute('data-option'));" %>
                     <%= form.label :answer, each_answer.answer_text, value: each_answer.answer_text, class: 'btn btn-primary m-2'%>
                 <% end %>
             <% end %>
+        </div>
+        <div id="hidden_fields">
+            <%= form.hidden_field :user_id, value: @user.id%>
+            <%= form.hidden_field :question_id, value: @question.id %>
+            <%= form.hidden_field :is_correct, value: nil %>
         </div>
     </div>
 </div>
@@ -28,14 +33,15 @@
 				<h5 class="modal-title" id="AnswerModalLabel"></h5>
 				<%# <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> %>
 			</div>
-			<div class="modal-body"></div>
+			<div class="modal-body">
+                <%= @question.description %>
+            </div>
 			<div class="modal-footer">
                 <% if @question.id != @question_last.id%>
-                    <%= form.hidden_field :question_id, value: @question.id %>
                     <%= form.submit 'Next', class: 'btn-next' %>
                 <% else %>
-                    <%= form.hidden_field :question_id, value: @question.id %>
-                    <%= form.submit 'Done', class: 'btn-next' %>                <% end %>
+                    <%= form.submit 'Done', class: 'btn-next' %>                
+                <% end %>
 			</div>
 		</div>
 	</div>
