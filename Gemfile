@@ -61,6 +61,9 @@ gem 'will_paginate-bootstrap4'
 
 gem 'byebug', '~>11.1.3'
 
+# reset primary key index
+gem 'activerecord-reset-pk-sequence', '~> 0.2.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

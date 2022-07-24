@@ -7,13 +7,17 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Submission.destroy_all
+Submission.reset_pk_sequence
 
 Quiz.destroy_all
-
-# Default Quiz
+Quiz.reset_pk_sequence
 quiz = Quiz.create(description: 'Default Quiz')
 
 Admin::Question.destroy_all
+Admin::Question.reset_pk_sequence
+
+Admin::Answer.destroy_all
+Admin::Answer.reset_pk_sequence
 
 # Question 1
 question1 = Admin::Question.create(situation: 'A patient has arrived complaining of leg swelling.', description: "Lymphedema, also known as lymphoedema and lymphatic edema, is a condition of localized swelling caused by a compromised lymphatic system. The lymphatic system functions as a critical portion of the body's immune system and returns interstitial fluid to the bloodstream.", quiz: quiz)
@@ -129,6 +133,7 @@ Admin::Answer.create(answer_text: 'Jock Itch', question: question10, is_correct:
 p "Created #{Admin::Question.count} questions"
 
 Admin::Course.destroy_all
+Admin::Course.reset_pk_sequence
 Admin::Course.create!([
   {
     "name": "Summer 2022"
@@ -143,13 +148,14 @@ Admin::Course.create!([
 p "Created #{Admin::Course.count} courses"
 
 User.destroy_all
+User.reset_pk_sequence
 User.create!([
   {
     "email": "admin@email.com",
     "password": "admin123",
     "first_name": "Admin",
     "last_name": "Admino",
-    :confirmed_at => Time.now(),
+    # :confirmed_at => Time.now(),
     "course_id": 1,
     "is_admin": 1,
     "confirmed_at": Time.now
@@ -159,7 +165,7 @@ User.create!([
     "password": "student",
     "first_name": "Student",
     "last_name": "Studento",
-    :confirmed_at => Time.now(),
+    # :confirmed_at => Time.now(),
     "course_id": 1,
     "is_admin": 0,
     "confirmed_at": Time.now
@@ -169,6 +175,7 @@ p "Created #{User.count} users"
 
 
 Admin::Semester.destroy_all
+Admin::Semester.reset_pk_sequence
 Admin::Semester.create(name: 'Summer', start_date: Date.new(Date.today.year, 5, 10), end_date: Date.new(Date.today.year, 7, 1), year: Date.today.year)
 Admin::Semester.create(name: 'Autum', start_date: Date.new(Date.today.year, 9, 14), end_date: Date.new(Date.today.year, 12, 31), year: Date.today.year)
 Admin::Semester.create(name: 'Spring', start_date: Date.new(Date.today.year, 1, 14), end_date: Date.new(Date.today.year, 5, 5), year: Date.today.year)
