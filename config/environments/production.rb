@@ -99,8 +99,8 @@ Rails.application.configure do
     address: 'smtp.sendgrid.net',
     port: 587,
     user_name: 'apikey',
-    password: 'SG.LD1gsK5QQjus1vbSPumWQg.jVjoOGZVKKm4s81gIToco_z_GZGvuHg0Oo1H_TUJw48',
-    domain: 'wessam@sale4deals.com',
+    password: ENV['SENDGRID_API_KEY'],
+    domain: 'snap-judgment.herokuapp.com',
     authentication: :plain,
     enable_starttls_auto: true
   }
