@@ -65,6 +65,7 @@ class ResultsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def result_params
-      params.fetch(:result, {})
+      # params.fetch(:result, {})
+      params.require(:submission).permit(:user_id, :quiz_id, submissions_attributes: [:question_id, :answer])
     end
 end

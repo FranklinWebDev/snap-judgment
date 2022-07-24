@@ -22,6 +22,8 @@ class SubmissionsController < ApplicationController
   # POST /submissions or /submissions.json
   def create
     # @question = Admin::Question.find(params[:id])
+    @quiz = Quiz.first
+    @user = current_user
     @question_last = Admin::Question.select(:id).last
     @submission = Submission.new(submission_params)
     respond_to do |format|
@@ -30,7 +32,7 @@ class SubmissionsController < ApplicationController
           format.html { redirect_to quiz_path(@submission.question_id + 1) }
           format.json { render :show, status: :created, location: @submission }
         else
-          format.html { redirect_to results_url}
+          format.html { redirect_to controller: 'results', action: 'create', user_id: @user.id}
           format.json { render :show, status: :created, location: @submission }
         end
       else

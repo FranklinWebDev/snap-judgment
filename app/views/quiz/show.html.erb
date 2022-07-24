@@ -1,24 +1,24 @@
 <main class="container-fluid">
-	<div class="row w-100 h-100">
-		<div class="col-md-7 p-4">
-			<div id="Image" title="image">
-				<% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key) %><% end %>
-			</div>
-		</div>
-		<div class="col-md-5 p-4">
-			<h3 id="Question"><%= @question.situation %></h3>
-			<br>
-			<div id="Options">
-				<% @answers.each do |each_answer| %>
-					<% if each_answer.question_id == @question.id %><!--Display options of this question-->
-					<button class="btn btn-primary m-2" data-option="<%= each_answer.is_correct %>" data-bs-toggle="modal" data-bs-target="#AnswerModal"><%= each_answer.answer_text %></button>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
-	
-	</div>
-</main>
+<%= form_for @submission do |form|%>
+<div class="row w-100 h-100">
+    <div class="col-md-7 p-4">
+        <div id="Image" title="image">
+            <% if @question.question_image.attached? %><%= cl_image_tag(@question.question_image.key) %><% end %>
+        </div>
+    </div>
+    <div class="col-md-5 p-4">
+        <h3 id="Question"><%= @question.situation %></h3>
+        <br>
+        <div id="Options">
+            <% @answers.each do |each_answer| %>
+                <% if each_answer.question_id == @question.id %><!--Display options of this question-->
+                    <%= form.radio_button :answer, each_answer.answer_text, class: 'btn-check', 'data-bs-toggle': 'modal', 'data-bs-target': '#AnswerModal', 'data-option': each_answer.is_correct, 'autocomplete': 'off' %>
+                    <%= form.label :answer, each_answer.answer_text, value: each_answer.answer_text, class: 'btn btn-primary m-2'%>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
 
 <!-- Answer Modal -->
 <div class="modal fade" id="AnswerModal" tabindex="-1" aria-labelledby="AnswerModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -26,46 +26,19 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="AnswerModalLabel"></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<%# <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> %>
 			</div>
 			<div class="modal-body"></div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-dark btn-try" data-bs-dismiss="modal">Try Again</button>
                 <% if @question.id != @question_last.id%>
-                    <%= button_to "Next", quiz_path.next, method: "get",  class: 'btn-next' %>
+                    <%= form.hidden_field :question_id, value: @question.id %>
+                    <%= form.submit 'Next', class: 'btn-next' %>
                 <% else %>
-                    <%= button_to "Done!", results_path, method: "get", class: 'btn-next' %>
-                <% end %>
+                    <%= form.hidden_field :question_id, value: @question.id %>
+                    <%= form.submit 'Done', class: 'btn-next' %>                <% end %>
 			</div>
 		</div>
 	</div>
 </div>
-
-<script>
-	function evaluateAnswer() {
-		let theAnswer = 'true';
-		if(this.dataset.option == theAnswer) {
-			document.querySelector('.modal .btn-next').hidden = false;
-			document.querySelector('.modal .btn-close').hidden = true;  
-			document.querySelector('.modal .btn-try').hidden = true;
-			document.querySelector('.modal .modal-title').innerText = 'Correct!';
-			document.querySelector('.modal .modal-body').innerHTML = '<%= @question.description %>';
-		} else {
-			document.querySelector('.modal .btn-next').hidden = true;
-			document.querySelector('.modal .btn-close').hidden = false;
-			document.querySelector('.modal .btn-try').hidden = false;
-			document.querySelector('.modal .modal-title').innerText = 'Incorrect!';
-		}
-	}
-	function evaluateButtons() {
-		const theButtons = document.querySelectorAll('#Options button');
-		theButtons.forEach(button => {
-			button.addEventListener('click', evaluateAnswer)
-		})
-	}
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', evaluateButtons);
-	} else {
-		evaluateButtons();
-	}
-</script>
+<% end %>
+</main>
