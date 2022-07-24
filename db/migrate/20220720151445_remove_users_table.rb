@@ -2,7 +2,7 @@ class RemoveUsersTable < ActiveRecord::Migration[7.0]
 
   def up
     remove_column :results, :user_id, if_exists: true
-    remove_column :submissions, :user_id, if_exists: true
+    # remove_column :submissions, :user_id, if_exists: true
 
 
     drop_table :users do |t|
