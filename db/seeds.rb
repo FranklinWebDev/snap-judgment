@@ -13,6 +13,7 @@ Quiz.destroy_all
 # Default Quiz
 quiz = Quiz.create(description: 'Default Quiz')
 
+Admin::Question.destroy_all
 
 # Question 1
 question1 = Admin::Question.create(situation: 'A patient has arrived complaining of leg swelling.', description: "Lymphedema, also known as lymphoedema and lymphatic edema, is a condition of localized swelling caused by a compromised lymphatic system. The lymphatic system functions as a critical portion of the body's immune system and returns interstitial fluid to the bloodstream.", quiz: quiz)
