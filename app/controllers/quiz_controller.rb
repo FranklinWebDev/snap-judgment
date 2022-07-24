@@ -2,7 +2,8 @@ class QuizController < ApplicationController
 	before_action :require_user
 	def index
 		@questions = Admin::Question.all
-		redirect_to action: "show", id: Admin::Question.first.id
+		@question_first = Admin::Question.select(:id).first
+		redirect_to action: "show", :id => @question_first.id
 	end
 
 	def show
