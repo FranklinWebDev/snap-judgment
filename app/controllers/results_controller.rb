@@ -8,6 +8,10 @@ class ResultsController < ApplicationController
 
   # GET /results/1 or /results/1.json
   def show
+    @result = Result.find(params[:id])
+    @new_result = Result.new
+    @user = current_user
+    @quiz = Quiz.first
   end
 
   # GET /results/new

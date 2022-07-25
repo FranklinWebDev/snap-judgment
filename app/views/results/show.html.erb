@@ -1,10 +1,12 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @result %>
-
-<div>
-  <%= link_to "Edit this result", edit_result_path(@result) %> |
-  <%= link_to "Back to results", results_path %>
-
-  <%= button_to "Destroy this result", @result, method: :delete %>
-</div>
+<main class="container public">
+	<div class="row p-3 text-center">
+      <p class='fs-2 fw-bold'>Score: <%= number_to_percentage(@result.score, precision: 0) %></p>
+  </div>
+  <div class="row p-3 text-center">
+    <%= form_for @new_result do |form|%>
+      <%= form.hidden_field :user_id, value: @user.id%>
+      <%= form.hidden_field   :quiz_id, value: @quiz.id%>
+      <%= form.submit 'Try Again', class: 'btn btn-primary btn-lg'%>
+    <% end %>
+	</div>
+</main>
