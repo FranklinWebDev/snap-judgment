@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_24_222235) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_25_013815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,11 +75,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_24_222235) do
   end
 
   create_table "results", force: :cascade do |t|
-    t.decimal "score"
+    t.integer "score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "quiz_id", null: false
+    t.bigint "user_id", null: false
     t.index ["quiz_id"], name: "index_results_on_quiz_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "semesters", force: :cascade do |t|
@@ -98,7 +100,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_24_222235) do
     t.string "answer"
     t.boolean "is_correct"
     t.bigint "user_id", null: false
+    t.bigint "result_id", null: false
     t.index ["question_id"], name: "index_submissions_on_question_id"
+    t.index ["result_id"], name: "index_submissions_on_result_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
@@ -128,6 +132,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_24_222235) do
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "results", "quizzes"
+  add_foreign_key "results", "users"
   add_foreign_key "submissions", "questions"
+  add_foreign_key "submissions", "results"
   add_foreign_key "submissions", "users"
 end

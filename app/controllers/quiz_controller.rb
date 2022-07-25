@@ -1,9 +1,9 @@
 class QuizController < ApplicationController
 	before_action :require_user
 	def index
-		@questions = Admin::Question.all
-		@question_first = Admin::Question.select(:id).first
-		redirect_to action: "show", :id => @question_first.id
+		@user = current_user
+		@quiz = Quiz.first
+		@result = Result.new
 	end
 
 	def show
@@ -13,24 +13,26 @@ class QuizController < ApplicationController
 		@question = Admin::Question.find(params[:id])
 		@question_last = Admin::Question.last
 		@question_all = @questions.paginate(page: params[:page], per_page: 1) #questions paginated
-		@total_score = 100
+		# @total_score = 100
 		# @answer = Admin::Answer.new
 		@answers = Admin::Answer.where(question_id: @questions).shuffle
-		@question_count = 0
-
-		@questions.each do |each_question|
-		 	@selection = false
-	     	@answers.each do |each_answer|
-				if each_answer.is_correct == true
-					@selection = true
-				end
-			end
-			if @selection == true
-				@question_count+=1
-			end
-		end
-
+		# @question_count = 0
+		@result = Result.where(user_id: @user.id).last
 		@submission = Submission.new
+
+
+		# @questions.each do |each_question|
+		#  	@selection = false
+	    #  	@answers.each do |each_answer|
+		# 		if each_answer.is_correct == true
+		# 			@selection = true
+		# 		end
+		# 	end
+		# 	if @selection == true
+		# 		@question_count+=1
+		# 	end
+		# end
+
 
 	end
 	# def index

@@ -31,7 +31,8 @@ class SubmissionsController < ApplicationController
           format.html { redirect_to quiz_path(@submission.question_id + 1) }
           format.json { render :show, status: :created, location: @submission }
         else
-          format.html { redirect_to controller: 'results', action: 'create', user_id: @submission.user_id}
+          calculate_score(@submission.result_id)
+          format.html { redirect_to result_path(@submission.result_id)}
           format.json { render :show, status: :created, location: @submission }
         end
       else
@@ -39,6 +40,15 @@ class SubmissionsController < ApplicationController
         format.json { render json: @submission.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def calculate_score(result_id)
+    @result = Result.find_by(id: result_id)
+    @submissions = Submission.where(result_id: result_id)
+    @total = @submissions.count.to_i
+    @correct = @submissions.where(is_correct: 'true').count.to_i
+    @score = (@correct.to_f/@total.to_f) * 100
+    @result.update(score: @score)
   end
 
   # PATCH/PUT /submissions/1 or /submissions/1.json
@@ -72,6 +82,6 @@ class SubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def submission_params
-      params.require(:submission).permit(:answer, :question_id, :is_correct, :user_id)
+      params.require(:submission).permit(:answer, :question_id, :is_correct, :user_id, :result_id)
     end
 end

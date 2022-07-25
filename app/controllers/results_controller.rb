@@ -22,10 +22,13 @@ class ResultsController < ApplicationController
   # POST /results or /results.json
   def create
     @result = Result.new(result_params)
+    @questions = Admin::Question.all
+		@question_first = Admin::Question.select(:id).first
+		# redirect_to action: "show", :id => @question_first.id
 
     respond_to do |format|
       if @result.save
-        format.html { redirect_to result_url(@result), notice: "Result was successfully created." }
+        format.html { redirect_to quiz_path(@question_first.id)}
         format.json { render :show, status: :created, location: @result }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,6 +69,6 @@ class ResultsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def result_params
       # params.fetch(:result, {})
-      params.require(:submission).permit(:user_id, :quiz_id, submissions_attributes: [:question_id, :answer])
+      params.require(:result).permit(:user_id, :quiz_id, :score, submissions_attributes: [:question_id, :answer])
     end
 end

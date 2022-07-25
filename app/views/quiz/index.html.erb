@@ -1,1 +1,9 @@
-<%# redirects to show first question %>
+<main class="container public">
+<div class='text-center'>
+    <%= form_for @result do |form|%>
+    <%= form.hidden_field :user_id, value: @user.id%>
+    <%= form.hidden_field :quiz_id, value: @quiz.id%>
+    <%= form.submit 'Begin Quiz', class: 'btn btn-primary btn-lg'%>
+    <% end %>
+</div>
+</main>
