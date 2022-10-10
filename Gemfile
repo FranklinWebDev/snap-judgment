@@ -13,7 +13,7 @@ gem "sprockets-rails"
 # gem "sqlite3", "~> 1.4"
 gem "pg"
 
-gem 'devise'
+# gem 'devise' -- causes toooooooo many problems
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"

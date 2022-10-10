@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users#, path: 'admin/user', class_name: 'Admin::User'
+  # devise_for :users#, path: 'admin/user', class_name: 'Admin::User'
 
   resources :submissions
 
