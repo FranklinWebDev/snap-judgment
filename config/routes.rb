@@ -5,15 +5,15 @@ Rails.application.routes.draw do
 
   root to: 'purpose#index'
 
-  # post 'login', to: 'sessions#create'
-  # delete 'logout', to: 'sessions#destroy'
-  # get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+  get 'login', to: 'sessions#new'
 
-  # get 'admin', to: 'admin/users#index'
+  get 'admin', to: 'admin/users#index'
 
-  # get 'forgot_password', to: 'forgot_password#index'
-  # post 'forgot_password', to: 'forgot_password#forgot_password'
-  # get 'edit_password', to: 'forgot_password#edit_password'
+  get 'forgot_password', to: 'forgot_password#index'
+  post 'forgot_password', to: 'forgot_password#forgot_password'
+  get 'edit_password', to: 'forgot_password#edit_password'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :purpose, only: [:index]
