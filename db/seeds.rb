@@ -164,10 +164,10 @@ User.create!([
     "confirmed_at": Time.now
   },
   {
-    "email": "student@email.com",
-    "password": "student",
-    "first_name": "Student",
-    "last_name": "Studento",
+    "email": "watsonb@franklin.edu",
+    "password": "Bwatson495!",
+    "first_name": "Bradley",
+    "last_name": "Watson",
     # :confirmed_at => Time.now(),
     "course_id": 1,
     "is_admin": 0,
